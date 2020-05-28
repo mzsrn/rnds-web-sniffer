@@ -1,0 +1,22 @@
+default: &default
+  adapter:  postgresql
+  encoding: unicode
+  pool:     15
+  timeout: 5000
+  
+  host:     <%= ENV['DATABASE_HOST'] || 'localhost' %>
+  port:     <%= ENV['DATABASE_PORT'] || 5432 %>
+  database: <%= ENV['DATABASE_NAME'] || 'rnds-web-sniffer' %>
+  username: <%= ENV['DATABASE_USER'] || 'postgres' %>
+  password: <%= ENV['DATABASE_PASS'] || '123456' %>
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+  database: rnds-web-sniffer_test<%= ENV['TEST_ENV_NUMBER'] %>
+
+production:
+  <<: *default
+  database: rnds-web-sniffer_prod
