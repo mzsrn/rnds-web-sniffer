@@ -1,0 +1,18 @@
+= form_for @resource_setting do |f|
+  - if @resource_setting.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@resource_setting.errors.count, "error")} prohibited this resource_setting from being saved:"
+      ul
+        - @resource_setting.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :login
+    = f.text_field :login
+  .field
+    = f.label :password
+    = f.password_field :password
+  .field
+    = f.label :type
+    = f.text_field :type
+  .actions = f.submit

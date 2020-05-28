@@ -1,0 +1,2 @@
+class ResourceSetting < ApplicationRecord
+end

@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Login:
+  = @resource_setting.login
+p
+  strong Password:
+  = @resource_setting.password
+p
+  strong Type:
+  = @resource_setting.type
+
+=> link_to 'Edit', edit_resource_setting_path(@resource_setting)
+'|
+=< link_to 'Back', resource_settings_path
