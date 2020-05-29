@@ -4,7 +4,6 @@ table
   thead
     tr
       th Login
-      th Password
       th Type
       th
       th
@@ -14,7 +13,6 @@ table
     - @resource_settings.each do |resource_setting|
       tr
         td = resource_setting.login
-        td = resource_setting.password
         td = resource_setting.type
         td = link_to 'Show', resource_setting
         td = link_to 'Edit', edit_resource_setting_path(resource_setting)
