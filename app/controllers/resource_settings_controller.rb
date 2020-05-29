@@ -56,7 +56,7 @@ class ResourceSettingsController < ApplicationController
   end
 
   def resource_setting_params
-    params.require(:resource_setting).permit(:login, :password, :type)
+    params.require(:resource_setting).permit(:login, :type)
   end
   
 end

@@ -13,3 +13,22 @@
  *= require_tree .
  *= require_self
  */
+@import "fonts";
+$sidebar-width: 300px;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'RobotoMono-Regular';
+}
+
+.kek::first-letter{
+  font-size: 3rem;
+}
+
+
