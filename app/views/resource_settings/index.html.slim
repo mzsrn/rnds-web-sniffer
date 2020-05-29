@@ -1,23 +1,18 @@
-h1 Listing resource_settings
-
-table
-  thead
-    tr
-      th Login
-      th Type
-      th
-      th
-      th
-
-  tbody
-    - @resource_settings.each do |resource_setting|
-      tr
-        td = resource_setting.login
-        td = resource_setting.type
-        td = link_to 'Show', resource_setting
-        td = link_to 'Edit', edit_resource_setting_path(resource_setting)
-        td = link_to 'Destroy', resource_setting, data: { confirm: 'Are you sure?' }, method: :delete
-
-br
-
-= link_to 'New Resource setting', new_resource_setting_path
+h1 Брокеры
+- @resource_settings.each do |resource_setting|
+  .resource_card
+    .head 
+      div = resource_setting.type
+      .links
+        = link_to 'Edit', edit_resource_setting_path(resource_setting)
+        = link_to 'Destroy', resource_setting, method: :delete
+    .body
+      .row
+        .key Логин
+        .value = resource_setting.login
+      .row
+        .key Портфель
+        .value
+          = link_to 'Посмотреть', '#'
+      
+h1 = link_to '+', new_resource_setting_path

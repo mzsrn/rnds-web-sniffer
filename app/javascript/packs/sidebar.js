@@ -10,13 +10,11 @@ function sidebarCollapser() {
   function openSidebar(e){
     e.preventDefault()
     sidebar.style.width = '250px'
-    main.style.marginLeft = '250px'
   }
 
   function closeSidebar(e){
     e.preventDefault()
     sidebar.style.width = '0'
-    main.style.marginLeft = '0'
   }
 }
 

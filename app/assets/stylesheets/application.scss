@@ -28,6 +28,13 @@ html, body {
   font-family: 'RobotoMono-Regular';
 }
 
+a {
+  text-decoration: underline;
+  &:visited{
+    color: inherit;
+  }
+}
+
 .navbar{
   background-color: #3b5998;
   overflow: hidden;
@@ -95,9 +102,8 @@ html, body {
 }
 
 .main{
-  transition: 0.5s;
   padding: 20px;
   overflow-x: hidden;
-  width: 80%;
+  width: 960px;
+  margin: auto;
 }
-

@@ -18,6 +18,7 @@ class ResourceSettingsController < ApplicationController
 
   def create
     @resource_setting = ResourceSetting.new(resource_setting_params)
+    @resource_setting.user = current_user if current_user.present?
 
     respond_to do |format|
       if @resource_setting.save

@@ -17,7 +17,8 @@ html
         a.btn.btn-close#close-sidebar href="#" &times
         =render 'layouts/navlinks'
       .main#main
-        = yield
+        .card
+          = yield
         p.alert
           = alert
         p.notice
