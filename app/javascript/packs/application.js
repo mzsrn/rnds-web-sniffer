@@ -8,7 +8,6 @@ require("jquery")
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
-require("packs/kek")
 
 import TurbolinksAdapter from 'vue-turbolinks'
 import Vue from 'vue/dist/vue.esm'

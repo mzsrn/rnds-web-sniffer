@@ -1,8 +1,9 @@
 class ResourceSettingsController < ApplicationController
   before_action :set_resource_setting, only: [:show, :edit, :update, :destroy]
+  authorize_resource
 
   def index
-    @resource_settings = ResourceSetting.all
+    @resource_settings = current_user&.resource_settings
   end
 
   def show
