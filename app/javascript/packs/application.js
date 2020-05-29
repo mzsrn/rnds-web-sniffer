@@ -10,13 +10,22 @@ require("@rails/activestorage").start()
 require("channels")
 require("packs/kek")
 
+import TurbolinksAdapter from 'vue-turbolinks'
+import Vue from 'vue/dist/vue.esm'
+import App from '../app.vue'
+import { sidebarCollapser } from './sidebar.js'
 
-// Uncomment to copy all static images under ../images to the output folder and reference
-// them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
-// or the `imagePath` JavaScript helper below.
-//
-// const images = require.context('../images', true)
-// const imagePath = (name) => images(name, true)
-function openSidebar(){
-  console.log(123)
-}
+Vue.use(TurbolinksAdapter)
+
+document.addEventListener('turbolinks:load', () => {
+  sidebarCollapser()
+  // const app = new Vue({
+  //   el: '#hello',
+  //   data: () => {
+  //     return {
+  //       message: "Can you say hello?"
+  //     }
+  //   },
+  //   components: { App }
+  // })
+})

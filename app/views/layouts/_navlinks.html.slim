@@ -1,5 +1,9 @@
 ul
-  li
-    =link_to 'KEK', '#'
-  li
-    =link_to 'LOL', '#'
+  - if user_signed_in?
+    li
+      =link_to 'Ресурсы', '#'
+    li
+      =link_to 'Портфель', '#'
+    =link_to 'Выйти', destroy_user_session_path, method: :delete
+  - else
+    =link_to 'Войти', new_user_session_path

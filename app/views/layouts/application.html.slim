@@ -8,12 +8,13 @@ html
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    .application
+    .application 
       nav.navbar
-        a href="#" onclick="openSidebar()" B
+        a#open-sidebar href="#"
+          i.fas.fa-bars
         =render 'layouts/navlinks'
       .sidebar#side-menu
-        a.btn.btn-close href="#" onclick="closeSidebar()" &times
+        a.btn.btn-close#close-sidebar href="#" onclick="closeSidebar()" &times
         =render 'layouts/navlinks'
       .main#main
         = yield
