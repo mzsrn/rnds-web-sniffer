@@ -22,8 +22,8 @@ class ResourceSettingsController < ApplicationController
 
     respond_to do |format|
       if @resource_setting.save
-        format.html { redirect_to @resource_setting, notice: 'Resource setting was successfully created.' }
-        format.json { render :show, status: :created, location: @resource_setting }
+        format.html { redirect_to resource_settings_url, notice: 'Resource setting was successfully created.' }
+        format.json { render :index, status: :created, location: @resource_setting }
       else
         format.html { render :new }
         format.json { render json: @resource_setting.errors, status: :unprocessable_entity }

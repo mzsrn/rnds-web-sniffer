@@ -10,11 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_29_075950) do
+ActiveRecord::Schema.define(version: 2020_05_29_145858) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
+
+  create_table "portfolios", force: :cascade do |t|
+    t.json "data"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "resource_setting_id"
+    t.index ["resource_setting_id"], name: "index_portfolios_on_resource_setting_id"
+  end
 
   create_table "resource_settings", force: :cascade do |t|
     t.string "login"

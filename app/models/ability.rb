@@ -5,6 +5,7 @@ class Ability
    
     if user.present?
       can :crud, ResourceSetting, user_id: user.id
+      can :crud, Portfolio, resource_setting: { user_id: user.id }
     end
 
   end

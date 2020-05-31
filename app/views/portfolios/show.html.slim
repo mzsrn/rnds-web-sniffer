@@ -1,0 +1,10 @@
+h1 Портфель
+- if @portfolio.present?
+  - @portfolio.data.each do |key, value| 
+    ul
+      li
+        h3 = key
+        p = value
+- else
+  h3 Нет данных
+      

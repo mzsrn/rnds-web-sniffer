@@ -1,7 +1,7 @@
 ul
   - if user_signed_in?
     li
-      =link_to 'Ресурсы', '#'
+      =link_to 'Брокеры', resource_settings_path
     li
       =link_to 'Портфели', '#'
     =link_to 'Выйти', destroy_user_session_path, method: :delete
