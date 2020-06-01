@@ -1,10 +1,7 @@
 h1 Портфель
 - if @portfolio.present?
-  - @portfolio.data.each do |key, value| 
-    ul
-      li
-        h3 = key
-        p = value
+  portfolio data="#{@portfolio.data.to_json}"
+  create-portfolio login="#{@resource.login}" broker-name="#{@resource.type}"
 - else
   h3 Нет данных
-      
+  create-portfolio login="#{@resource.login}" broker-name="#{@resource.type}"

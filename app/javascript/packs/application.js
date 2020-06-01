@@ -11,20 +11,26 @@ require("channels")
 
 import TurbolinksAdapter from 'vue-turbolinks'
 import Vue from 'vue/dist/vue.esm'
+import VModal from 'vue-js-modal'
 import App from '../app.vue'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+
+import BrokerCard from '../components/BrokerCard.vue'
+import CreatePortfolio from '../components/CreatePortfolio.vue'
 import { sidebarCollapser } from './sidebar.js'
 
 Vue.use(TurbolinksAdapter)
+Vue.use(VModal)
+Vue.use(VueAxios, axios)
+Vue.component('app', App)
+Vue.component('broker-card', BrokerCard)
+Vue.component('create-portfolio', CreatePortfolio)
 
 document.addEventListener('turbolinks:load', () => {
+  axios.defaults.headers.common['X-CSRF-Token'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
   sidebarCollapser()
-  // const app = new Vue({
-  //   el: '#hello',
-  //   data: () => {
-  //     return {
-  //       message: "Can you say hello?"
-  //     }
-  //   },
-  //   components: { App }
-  // })
+  const app = new Vue({
+    el: "[data-behavior='vue']",
+  })
 })

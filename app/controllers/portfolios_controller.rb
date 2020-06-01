@@ -5,8 +5,8 @@ class PortfoliosController < ApplicationController
   private
 
   def set_portfolio
-    resource = ResourceSetting.find_by(id: params[:id])
-    @portfolio = resource&.portfolio
+    @resource = ResourceSetting.find_by(id: params[:id])
+    @portfolio = @resource&.portfolio
   end
 
 end

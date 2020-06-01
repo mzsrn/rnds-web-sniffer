@@ -13,6 +13,6 @@ h1 Брокеры
       .row
         .key Портфель
         .value
-          = link_to 'Посмотреть', portfolios_path(resource_setting)
-      
+          = link_to 'Посмотреть', portfolios_path(resource_setting), {class: "btn btn-primary"}
+        
 h1 = link_to '+', new_resource_setting_path
