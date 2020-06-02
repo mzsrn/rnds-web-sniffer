@@ -3,7 +3,10 @@ class PortfoliosController < ApplicationController
   authorize_resource
 
   def create
-    Bobik.new(params["login"], params["password"])
+    ActionCable.server.broadcast("bobik:#{current_user.id}", content: 'Start connecting from controller')
+    # Bobik.new(current_user.id, params["login"], params["password"])
+    CallBobikJob.perform_later(current_user.id, params["login"], params["password"])
+    # byebug
   end
 
   private
