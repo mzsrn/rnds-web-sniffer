@@ -8,13 +8,13 @@
       <div class="body">
         <div>
           <label for="login">Login</label>
-          <input type="text" name="login" disabled="true" v-model="login">
+          <input type="text" name="login" v-model="login">
         </div>
         <div>
           <label for="password">Пароль</label>
-          <input type="password" name="password">
+          <input type="password" name="password" v-model="password">
         </div>
-        <button>
+        <button @click="createPortfolio">
           Загрузить
       </button>
       </div>
@@ -28,9 +28,17 @@ export default {
     login: String,
     brokerName: String
   },
+  data: function () {
+    return {
+      password: ""
+    }
+  },
   methods: {
     show: function() {
       this.$modal.show("123")
+    },
+    createPortfolio: function() {
+      this.axios.post('/resource_settings/10/portfolios', {login: this.login, password: this.password})
     }
   }
 }
