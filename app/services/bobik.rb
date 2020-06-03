@@ -19,6 +19,15 @@ class Bobik
     fill_in('/html/body/div[1]/div/div[2]/div[2]/div[1]/div/div[1]/form/div[1]/div/input', @login)
     fill_in('/html/body/div[1]/div/div[2]/div[2]/div[1]/div/div[1]/form/div[2]/div[1]/input', @password)
     find_and_click('/html/body/div[1]/div/div[2]/div[2]/div[1]/div/div[1]/form/div[3]/button')
+    sleep(4)
+    doc = Nokogiri::HTML(@driver.page_source)
+
+    # file = File.open('/home/marat/projects/rnds-web-sniffer/tmp/finam.html', 'r')
+    # doc = Nokogiri::HTML(file)
+    parser = HtmlParser::Finam.new(doc)
+    kek = parser.get_table_body
+    ActionCable.server.broadcast("bobik:#{@user_id}", kek)
+    parser.get_table_body
   ensure
     @driver.quit
   end

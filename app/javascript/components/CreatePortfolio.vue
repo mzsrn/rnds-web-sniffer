@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="modal">
     <button href="#" class="btn btn-primary" @click.prevent='show'>Создать</button>
     <modal name="123">
       <h3 class="header">
@@ -25,11 +25,11 @@
 <script>
 export default {
   props: {
-    login: String,
     brokerName: String
   },
   data: function () {
     return {
+      login: "",
       password: ""
     }
   },

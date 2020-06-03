@@ -1,0 +1,65 @@
+ru:
+  table:
+    head:
+      path:
+        navigation_element: div
+        navigation_attributes: data-column-id
+      values:
+        ticker: Инструмент
+        quantity: Позиция
+        rate: Котировка
+        equity: Оценка
+        maintReq: Маржа
+        reqEquity: Обеспечение
+        posAvgPrice: Средняя
+        PLDay: Прибыль, день
+        unrealizedPnl: Прибыль
+    body:
+      css: div.ReactVirtualized__Grid__innerScrollContainer
+      rows:
+        css: div.ReactVirtualized__Table__row
+        cells:
+          -
+            css: div[aria-colindex=1] p
+            value: inner_html
+            name: Инструмент
+          -
+            css: div[aria-colindex=2] p
+            value: inner_html
+            name: Позиция
+          -
+            css: div[aria-colindex=3] p
+            value: title
+            name: Котировка
+          -
+            css: div[aria-colindex=4] p
+            value: inner_html
+            name: Оценка
+          -
+            css: div[aria-colindex=5] p
+            value: inner_html
+            name: Маржа
+          -
+            css: div[aria-colindex=6] p
+            value: inner_html
+            name: Обеспечение
+          -
+            css: div[aria-colindex=7] p
+            value: inner_html
+            name: Средняя
+          -
+            css: div[aria-colindex=8] p
+            value: inner_html
+            name: Прибыль, день
+          -
+            css: div[aria-colindex=9] p
+            value: inner_html
+            name: Прибыль
+        
+      
+
+          
+
+  
+      
+        
