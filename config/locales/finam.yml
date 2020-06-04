@@ -1,19 +1,15 @@
 ru:
   table:
     head:
-      path:
-        navigation_element: div
-        navigation_attributes: data-column-id
-      values:
-        ticker: Инструмент
-        quantity: Позиция
-        rate: Котировка
-        equity: Оценка
-        maintReq: Маржа
-        reqEquity: Обеспечение
-        posAvgPrice: Средняя
-        PLDay: Прибыль, день
-        unrealizedPnl: Прибыль
+      ticker: Инструмент
+      quantity: Позиция
+      rate: Котировка
+      equity: Оценка
+      maintReq: Маржа
+      reqEquity: Обеспечение
+      posAvgPrice: Средняя
+      PLDay: Прибыль, день
+      unrealizedPnl: Прибыль
     body:
       css: div.ReactVirtualized__Grid__innerScrollContainer
       rows:
@@ -22,39 +18,39 @@ ru:
           -
             css: div[aria-colindex=1] p
             value: inner_html
-            name: Инструмент
+            name: ticker
           -
             css: div[aria-colindex=2] p
             value: inner_html
-            name: Позиция
+            name: quantity
           -
             css: div[aria-colindex=3] p
             value: title
-            name: Котировка
+            name: rate
           -
             css: div[aria-colindex=4] p
             value: inner_html
-            name: Оценка
+            name: equity
           -
             css: div[aria-colindex=5] p
             value: inner_html
-            name: Маржа
+            name: maintReq
           -
             css: div[aria-colindex=6] p
             value: inner_html
-            name: Обеспечение
+            name: reqEquity
           -
             css: div[aria-colindex=7] p
             value: inner_html
-            name: Средняя
+            name: posAvgPrice
           -
             css: div[aria-colindex=8] p
             value: inner_html
-            name: Прибыль, день
+            name: PLDay
           -
             css: div[aria-colindex=9] p
             value: inner_html
-            name: Прибыль
+            name: unrealizedPnl
         
       
 

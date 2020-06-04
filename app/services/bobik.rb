@@ -1,15 +1,26 @@
 class Bobik
 
-  def initialize user_id, login, password
+  def initialize user_id, resource_setting_id, login, password
     @user_id, @login, @password = user_id, login, password
-    fetch_from 'esia'
+    @portfolio = Portfolio.find_or_initialize_by(resource_setting_id: resource_setting_id)
+    fetch_from 'finam'
   end
 
   private
 
   def fetch_from source
+    # doc = get_actual_doc
+    doc = get_local_doc
+    parser = HtmlParser::Finam.new(doc)
+    body = parser.get_table_body
+    head = I18n.t('table')[:head]
+    @portfolio.update(data: {body: body})
+    ActionCable.server.broadcast("bobik:#{@user_id}", result: {head: head, body: body})
+  end
+
+  def get_actual_doc
     profile = Selenium::WebDriver::Chrome::Profile.new()
-    profile.add_extension("/home/marat/projects/rnds-sniffer.crx")
+    # profile.add_extension("/home/marat/projects/rnds-sniffer.crx")
     @driver = Selenium::WebDriver.for :chrome, profile: profile
     @wait = Selenium::WebDriver::Wait.new(timeout: 10)
     @driver.get('https://trading.finam.ru/')
@@ -19,17 +30,15 @@ class Bobik
     fill_in('/html/body/div[1]/div/div[2]/div[2]/div[1]/div/div[1]/form/div[1]/div/input', @login)
     fill_in('/html/body/div[1]/div/div[2]/div[2]/div[1]/div/div[1]/form/div[2]/div[1]/input', @password)
     find_and_click('/html/body/div[1]/div/div[2]/div[2]/div[1]/div/div[1]/form/div[3]/button')
-    sleep(4)
-    doc = Nokogiri::HTML(@driver.page_source)
-
-    # file = File.open('/home/marat/projects/rnds-web-sniffer/tmp/finam.html', 'r')
-    # doc = Nokogiri::HTML(file)
-    parser = HtmlParser::Finam.new(doc)
-    kek = parser.get_table_body
-    ActionCable.server.broadcast("bobik:#{@user_id}", kek)
-    parser.get_table_body
+    sleep(2)
+    Nokogiri::HTML(@driver.page_source)
   ensure
     @driver.quit
+  end
+
+  def get_local_doc
+    file = File.open('/home/marat/projects/rnds-web-sniffer/tmp/finam.html', 'r')
+    Nokogiri::HTML(file)
   end
 
   def find_and_click field

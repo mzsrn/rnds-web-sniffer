@@ -4,9 +4,8 @@ class PortfoliosController < ApplicationController
 
   def create
     ActionCable.server.broadcast("bobik:#{current_user.id}", content: 'Start connecting from controller')
-    # Bobik.new(current_user.id, params["login"], params["password"])
-    CallBobikJob.perform_later(current_user.id, params["login"], params["password"])
-    # byebug
+    CallBobikJob.perform_later(current_user.id, params['resource_setting_id'], params["login"], params["password"])
+    render json: {}, status: :ok 
   end
 
   private

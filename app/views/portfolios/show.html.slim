@@ -1,6 +1,6 @@
 h1 Портфель
 - if @portfolio.present?
-  create-portfolio login="#{@resource.login}" broker-name="#{@resource.type}"
+  create-portfolio body="#{@resource.portfolio.data['body'].to_json}" login="#{@resource.login}" broker-name="#{@resource.type}" broker-id="#{@resource.id}"
 - else
   h3 Нет данных
-  create-portfolio login="#{@resource.login}" broker-name="#{@resource.type}"
+  create-portfolio login="#{@resource.login}" broker-name="#{@resource.type}" broker-id="#{@resource.id}"

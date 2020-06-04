@@ -1,7 +1,29 @@
 <template>
   <div class="modal">
+    <table>
+      <thead>
+        <tr>
+          <td v-for="value in tableHead">
+            {{value}}
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="row in tableBody">
+          <td>{{row.ticker}}</td>
+          <td>{{row.quantity}}</td>
+          <td>{{row.rate}}</td>
+          <td>{{row.equity}}</td>
+          <td>{{row.maintReq}}</td>
+          <td>{{row.reqEquity}}</td>
+          <td>{{row.posAvgPrice}}</td>
+          <td>{{row.PLDay}}</td>
+          <td>{{row.unrealizedPnl}}</td>
+        </tr>
+      </tbody>
+    </table>
     <button href="#" class="btn btn-primary" @click.prevent='show'>Создать</button>
-    <modal name="123">
+    <modal name="modal">
       <h3 class="header">
         Загрузить портфель {{brokerName}}
       </h3>
@@ -23,22 +45,46 @@
 </template>
 
 <script>
+import consumer from "../channels/consumer"
+
 export default {
   props: {
-    brokerName: String
+    brokerName: String,
+    brokerId: String,
+    body: String
+  },
+  computed: {
+    parseBody: function() {
+      console.log(JSON.parse(this.body))
+      return JSON.parse(this.body)
+    }
   },
   data: function () {
     return {
       login: "",
-      password: ""
+      password: "",      
+      tableHead: {},
+      tableBody: {}
     }
+  },
+  mounted () {
+    consumer.subscriptions.create("BobikChannel", {
+      received: (data) => {
+        var ref, ref1;
+        this.tableHead = (ref = data.result) != null ? ref.head : void 0;
+        this.tableBody = (ref1 = data.result) != null ? ref1.body : void 0;
+      }
+    })
   },
   methods: {
     show: function() {
-      this.$modal.show("123")
+      this.$modal.show("modal")
     },
     createPortfolio: function() {
-      this.axios.post('/resource_settings/10/portfolios', {login: this.login, password: this.password})
+      this.axios.post(`/resource_settings/${this.brokerId}/portfolios`, {resource_setting_id: this.brokerId, login: this.login, password: this.password})
+    },
+    setPortfolio() {
+      this.msg = data
     }
   }
 }
@@ -58,6 +104,24 @@ export default {
     flex-direction: column;
     button {
       margin: 20px;
+    }
+  }
+  table {
+    font-size: 14px;
+    table-layout: fixed;
+    border-collapse: collapse;
+    thead {
+      font-weight: bold;
+    }
+    tr {
+      td {
+        padding: 6px;
+      }
+    }
+    tbody {
+      tr:nth-child(odd) {
+        background: lighten(#3b5998, 30%);
+      }
     }
   }
 
