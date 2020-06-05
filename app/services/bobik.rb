@@ -19,9 +19,18 @@ class Bobik
   end
 
   def get_actual_doc
-    profile = Selenium::WebDriver::Chrome::Profile.new()
-    # profile.add_extension("/home/marat/projects/rnds-sniffer.crx")
-    @driver = Selenium::WebDriver.for :chrome
+    options_args = %w(
+      --remote-debugging-port=9222
+      --no-sandbox
+      --allow-running-insecure-content
+      --disable-gpu
+      --window-size=1920,1080
+      --start-maximised
+      --no-sandbox
+      --disable-dev-shm-usage
+      --headless)
+    options = Selenium::WebDriver::Chrome::Options.new(args: options_args)
+    @driver = Selenium::WebDriver.for :chrome, options: options
     @wait = Selenium::WebDriver::Wait.new(timeout: 10)
     @driver.get('https://trading.finam.ru/')
     ActionCable.server.broadcast("bobik:#{@user_id}", content: 'Connected to FINAM')
