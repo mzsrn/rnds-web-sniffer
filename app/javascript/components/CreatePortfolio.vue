@@ -73,6 +73,7 @@ export default {
         var ref, ref1;
         this.tableHead = (ref = data.result) != null ? ref.head : void 0;
         this.tableBody = (ref1 = data.result) != null ? ref1.body : void 0;
+        this.$modal.hide("modal")
       }
     })
   },

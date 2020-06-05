@@ -9,8 +9,8 @@ class Bobik
   private
 
   def fetch_from source
-    # doc = get_actual_doc
-    doc = get_local_doc
+    doc = get_actual_doc
+    # doc = get_local_doc
     parser = HtmlParser::Finam.new(doc)
     body = parser.get_table_body
     head = I18n.t('table')[:head]
@@ -21,7 +21,7 @@ class Bobik
   def get_actual_doc
     profile = Selenium::WebDriver::Chrome::Profile.new()
     # profile.add_extension("/home/marat/projects/rnds-sniffer.crx")
-    @driver = Selenium::WebDriver.for :chrome, profile: profile
+    @driver = Selenium::WebDriver.for :chrome
     @wait = Selenium::WebDriver::Wait.new(timeout: 10)
     @driver.get('https://trading.finam.ru/')
     ActionCable.server.broadcast("bobik:#{@user_id}", content: 'Connected to FINAM')
