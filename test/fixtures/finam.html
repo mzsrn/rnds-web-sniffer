@@ -1,0 +1,1880 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="google" content="notranslate">
+  <meta http-equiv="X-UA-Compatible" content="IE=11">
+  <meta property="tx-product" content="ft_lite">
+  <meta property="nodeEnv" content="production">
+  <link rel="icon" href="favicon-v4.png">
+  <title>FinamTrade Lite</title>
+  <style>
+    body,
+    html,
+    #root {
+      height: 100%;
+      margin: 0
+    }
+
+    #root {
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .spinner {
+      display: block;
+      -webkit-animation: rotator 1.4s linear infinite;
+      animation: rotator 1.4s linear infinite
+    }
+
+    @-webkit-keyframes rotator {
+      0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg)
+      }
+
+      100% {
+        -webkit-transform: rotate(270deg);
+        transform: rotate(270deg)
+      }
+    }
+
+    @keyframes rotator {
+      0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg)
+      }
+
+      100% {
+        -webkit-transform: rotate(270deg);
+        transform: rotate(270deg)
+      }
+    }
+
+    .path {
+      stroke-dasharray: 187;
+      stroke-dashoffset: 0;
+      -webkit-transform-origin: center;
+      transform-origin: center;
+      -webkit-animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
+      animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite
+    }
+
+    @-webkit-keyframes colors {
+      0% {
+        stroke: #4285F4
+      }
+
+      25% {
+        stroke: #DE3E35
+      }
+
+      50% {
+        stroke: #F7C223
+      }
+
+      75% {
+        stroke: #1B9A59
+      }
+
+      100% {
+        stroke: #4285F4
+      }
+    }
+
+    @keyframes colors {
+      0% {
+        stroke: #4285F4
+      }
+
+      25% {
+        stroke: #DE3E35
+      }
+
+      50% {
+        stroke: #F7C223
+      }
+
+      75% {
+        stroke: #1B9A59
+      }
+
+      100% {
+        stroke: #4285F4
+      }
+    }
+
+    @-webkit-keyframes dash {
+      0% {
+        stroke-dashoffset: 187
+      }
+
+      50% {
+        stroke-dashoffset: 46.75;
+        -webkit-transform: rotate(135deg);
+        transform: rotate(135deg)
+      }
+
+      100% {
+        stroke-dashoffset: 187;
+        -webkit-transform: rotate(450deg);
+        transform: rotate(450deg)
+      }
+    }
+
+    @keyframes dash {
+      0% {
+        stroke-dashoffset: 187
+      }
+
+      50% {
+        stroke-dashoffset: 46.75;
+        -webkit-transform: rotate(135deg);
+        transform: rotate(135deg)
+      }
+
+      100% {
+        stroke-dashoffset: 187;
+        -webkit-transform: rotate(450deg);
+        transform: rotate(450deg)
+      }
+    }
+  </style>
+
+
+
+  <script async="" src="https://www.google-analytics.com/analytics.js"></script>
+  <script type="text/javascript" async=""
+    src="https://www.googletagmanager.com/gtag/js?id=G-1TFN9P8VF4&amp;l=dataLayer&amp;cx=c"></script>
+  <script>
+    !function (n, e) { var t, o, i, c = [], f = { passive: !0, capture: !0 }, r = new Date, a = "pointerup", u = "pointercancel"; function p(n, c) { t || (t = c, o = n, i = new Date, w(e), s()) } function s() { o >= 0 && o < i - r && (c.forEach(function (n) { n(o, t) }), c = []) } function l(t) { if (t.cancelable) { var o = (t.timeStamp > 1e12 ? new Date : performance.now()) - t.timeStamp; "pointerdown" == t.type ? function (t, o) { function i() { p(t, o), r() } function c() { r() } function r() { e(a, i, f), e(u, c, f) } n(a, i, f), n(u, c, f) }(o, t) : p(o, t) } } function w(n) { ["click", "mousedown", "keydown", "touchstart", "pointerdown"].forEach(function (e) { n(e, l, f) }) } w(n), self.perfMetrics = self.perfMetrics || {}, self.perfMetrics.onFirstInputDelay = function (n) { c.push(n), s() } }(addEventListener, removeEventListener);
+  </script>
+  <style>
+    /* Collection default theme */
+
+    .ReactVirtualized__Collection {}
+
+    .ReactVirtualized__Collection__innerScrollContainer {}
+
+    /* Grid default theme */
+
+    .ReactVirtualized__Grid {}
+
+    .ReactVirtualized__Grid__innerScrollContainer {}
+
+    /* Table default theme */
+
+    .ReactVirtualized__Table {}
+
+    .ReactVirtualized__Table__Grid {}
+
+    .ReactVirtualized__Table__headerRow {
+      font-weight: 700;
+      text-transform: uppercase;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+      flex-direction: row;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+    }
+
+    .ReactVirtualized__Table__row {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+      flex-direction: row;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+    }
+
+    .ReactVirtualized__Table__headerTruncatedText {
+      display: inline-block;
+      max-width: 100%;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
+    .ReactVirtualized__Table__headerColumn,
+    .ReactVirtualized__Table__rowColumn {
+      margin-right: 10px;
+      min-width: 0px;
+    }
+
+    .ReactVirtualized__Table__rowColumn {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .ReactVirtualized__Table__headerColumn:first-of-type,
+    .ReactVirtualized__Table__rowColumn:first-of-type {
+      margin-left: 10px;
+    }
+
+    .ReactVirtualized__Table__sortableHeaderColumn {
+      cursor: pointer;
+    }
+
+    .ReactVirtualized__Table__sortableHeaderIconContainer {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+    }
+
+    .ReactVirtualized__Table__sortableHeaderIcon {
+      -webkit-box-flex: 0;
+      -ms-flex: 0 0 24px;
+      flex: 0 0 24px;
+      height: 1em;
+      width: 1em;
+      fill: currentColor;
+    }
+
+    /* List default theme */
+
+    .ReactVirtualized__List {}
+  </style>
+  <style>
+    @font-face {
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 400;
+      src: local('Roboto'), local('Roboto-Regular'),
+        url(static/fonts/roboto-v18-cyrillic_latin-regular_7f6652096fad35bb930a2ed1904fc6c4.woff2) format('woff2'),
+        url(static/fonts/roboto-v18-cyrillic_latin-regular_2b9dfec7807cb4a69fbb276eb62c3d80.woff) format('woff');
+    }
+
+    @font-face {
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 500;
+      src: local('Roboto Medium'), local('Roboto-Medium'),
+        url(static/fonts/roboto-v18-cyrillic_latin-500_fc764334f6bb6f0282ce721595280bb9.woff2) format('woff2'),
+        url(static/fonts/roboto-v18-cyrillic_latin-500_4babd1bb2a7bdfbac976e55b714f0a24.woff) format('woff');
+    }
+
+    @font-face {
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 700;
+      src: local('Roboto Bold'), local('Roboto-Bold'),
+        url(static/fonts/roboto-v18-cyrillic_latin-700_21f4b44bd7f86b93c6bac09146f7de33.woff2) format('woff2'),
+        url(static/fonts/roboto-v18-cyrillic_latin-700_3125c8cad303341c2702a7df5a2ba397.woff) format('woff');
+    }
+  </style>
+  <script src="https://www.googletagmanager.com/gtag/js?l=dataLayer" async=""></script>
+  <script charset="utf-8" src="static/js/13.2e061e5a.chunk.js"></script>
+  <style data-styled-tx-web="active" data-styled-version="5.1.0"></style>
+  <style id="detectElementResize" type="text/css">
+    @keyframes resizeanim {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 0;
+      }
+    }
+
+    .resize-triggers {
+      animation: 1ms resizeanim;
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    .resize-triggers,
+    .resize-triggers>div,
+    .contract-trigger:before {
+      content: " ";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .resize-triggers>div {
+      background: #eee;
+      overflow: auto;
+    }
+
+    .contract-trigger:before {
+      width: 200%;
+      height: 200%;
+    }
+  </style>
+  <script charset="utf-8" src="static/js/0.1bb5e946.chunk.js"></script>
+  <style id="erd_scroll_detection_scrollbar_style">
+    /* Created by the element-resize-detector library. */
+    .erd_scroll_detection_container>div::-webkit-scrollbar {
+      display: none;
+    }
+
+    .erd_scroll_detection_container_animation_active {
+      -webkit-animation-duration: 0.1s;
+      animation-duration: 0.1s;
+      -webkit-animation-name: erd_scroll_detection_container_animation;
+      animation-name: erd_scroll_detection_container_animation;
+    }
+
+    @-webkit-keyframes erd_scroll_detection_container_animation {
+      0% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes erd_scroll_detection_container_animation {
+      0% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+
+<body style="background-color: rgb(241, 241, 242);">
+
+  <div id="root">
+    <div class="sc-qQIWi dhrnLz" style="padding-top: 0px;">
+      <div class="sc-AxjAm kftIZz sc-pAXKH kcOHXU visible elevation2">
+        <div class="sc-pjUyM TMkZq">
+          <div class="sc-prQBl jeGZjb"><span class="sc-fzqARJ fTliZb sc-oTcWe gxA-DQc activated"><button type="button"
+                class="sc-fzqNqU bSpCFI" id="favorites-tab-button" title="Избранное"><span class="sc-fzoyTs jZUSDr"><svg
+                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    class="sc-AxgMl fePhHC">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                      d="M2 9H13V11H2V9ZM2 5H14V7H2V5ZM9 15H2V13H9V15ZM19.299 19.8L15.9 17.6405L12.501 19.8L13.403 15.73L10.4 12.9916L14.3545 12.6384L15.9 8.8L17.4455 12.6384L21.4 12.9916L18.397 15.73L19.299 19.8Z">
+                    </path>
+                  </svg></span></button></span></div>
+          <div class="sc-prQBl jeGZjb"><span class="sc-fzqARJ fTliZb sc-oTcWe gxA-DQc"><button type="button"
+                class="sc-fzqNqU bSpCFI" id="markets-tab-button" title="Рынки"><span class="sc-fzoyTs jZUSDr"><svg
+                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    class="sc-AxgMl fePhHC">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                      d="M10 20H14V4H10V20ZM4 20H8V12H4V20ZM16 9V20H20V9H16Z"></path>
+                  </svg></span></button></span></div>
+          <div class="sc-prQBl jeGZjb"><span class="sc-fzqARJ fTliZb sc-oTcWe gxA-DQc"><button type="button"
+                class="sc-fzqNqU bSpCFI" id="alerts-tab-button" title="Алерты"><span class="sc-fzoyTs jZUSDr"><svg
+                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    class="sc-AxgMl fePhHC">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                      d="M18.88 10V15.82L21 17.94V19H3V17.94L5.12 15.82V10C5.12 6.75 7.37 4.03 10.41 3.31V2.59C10.41 1.71 11.12 1 12 1C12.88 1 13.59 1.71 13.59 2.59V3.31C16.63 4.03 18.88 6.75 18.88 10ZM12 22C10.9 22 10.01 21.11 10.01 20.01H13.99C13.99 21.11 13.1 22 12 22Z">
+                    </path>
+                  </svg></span></button></span></div>
+          <div class="sc-prQBl jeGZjb"><span class="sc-fzqARJ fTliZb sc-oTcWe gxA-DQc"><button type="button"
+                class="sc-fzqNqU bSpCFI" id="notifications-tab-button" title="Уведомления"><span
+                  class="sc-fzoyTs jZUSDr"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    viewBox="0 0 24 24" class="sc-AxgMl fePhHC">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                      d="M20 4H4C2.9 4 2.01 4.9 2.01 6L2 18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 8L12 13L4 8V6L12 11L20 6V8Z">
+                    </path>
+                  </svg></span></button></span></div>
+          <div class="sc-prQBl jeGZjb"><span class="sc-fzqARJ fTliZb sc-oTcWe gxA-DQc"><button type="button"
+                class="sc-fzqNqU bSpCFI" id="news-tab-button" title="Новости"><span class="sc-fzoyTs jZUSDr"><svg
+                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    class="sc-AxgMl fePhHC">
+                    <path
+                      d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM11 19.93C7.05 19.44 4 16.08 4 12C4 11.38 4.08 10.79 4.21 10.21L9 15V16C9 17.1 9.9 18 11 18V19.93ZM17.9 17.39C17.64 16.58 16.9 16 16 16H15V13C15 12.45 14.55 12 14 12H8V10H10C10.55 10 11 9.55 11 9V7H13C14.1 7 15 6.1 15 5V4.59C17.93 5.78 20 8.65 20 12C20 14.08 19.2 15.97 17.9 17.39Z">
+                    </path>
+                  </svg></span></button></span></div><span
+            class="sc-fzqARJ fTliZb sc-oTcWe gxA-DQc sc-qYgLf hNZirj"><button type="button" class="sc-fzqNqU bSpCFI"
+              id="tv-player-button" title="Прямой эфир"><span class="sc-fzoyTs jZUSDr"><svg
+                  xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="sc-AxgMl fePhHC">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M21 6H13.41L16.7 2.71L16 2L12 6L8 2L7.29 2.71L10.59 6H3C1.9 6 1 6.89 1 8V20C1 21.1 1.9 22 3 22H21C22.1 22 23 21.1 23 20V8C23 6.89 22.1 6 21 6ZM21 20H3V8H21V20ZM9 10V18L16 14L9 10Z">
+                  </path>
+                </svg></span></button></span>
+        </div>
+        <div id="main-inner-aside-root" class="sc-pJsLC dKiwpY">
+          <div id="favorite-list-root" class="sc-qXiOn kuunvL">
+            <div class="sc-pIuOK kFSBTR">
+              <div class="sc-psdQm kLmNnp">
+                <div class="sc-fznAgC ioYSG sc-qQWWl ljsXbq hasValue"><button type="button" id="favorite-group-dropdown"
+                    class="sc-fznLPX sc-fzqAui kKCaxY">Недавно просмотренные<svg xmlns="http://www.w3.org/2000/svg"
+                      width="24" height="24" viewBox="0 0 24 24" class="sc-AxgMl fePhHC sc-fzqMdD xevgn">
+                      <path d="M7 10L12 15L17 10H7Z"></path>
+                    </svg></button><input type="text" class="sc-fzoJus bPIkEp"></div>
+              </div>
+              <div><span class="sc-fzqARJ fTliZb"><button type="button" class="sc-fzqNqU bSpCFI"
+                    id="layout-switcher-button"><span class="sc-fzoyTs jZUSDr"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="24" height="24" viewBox="0 0 24 24" class="sc-AxgMl fePhHC" data-test="default">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M4 3H20C20.5523 3 21 3.44772 21 4V20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V4C3 3.44772 3.44772 3 4 3ZM7 14H5V19H10V17H7V14ZM14 7V5H19V10H17V7H14Z">
+                        </path>
+                      </svg></span></button></span></div>
+              <div class="sc-pZpxQ bptTdF"><span class="sc-fzqARJ fTliZb"><button type="button" class="sc-fzqNqU bSpCFI"
+                    id="favorite-group-dialog-button"><span class="sc-fzoyTs jZUSDr"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        class="sc-AxgMl fePhHC">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M12 8C13.1 8 14 7.1 14 6C14 4.9 13.1 4 12 4C10.9 4 10 4.9 10 6C10 7.1 10.9 8 12 8ZM12 10C10.9 10 10 10.9 10 12C10 13.1 10.9 14 12 14C13.1 14 14 13.1 14 12C14 10.9 13.1 10 12 10ZM12 16C10.9 16 10 16.9 10 18C10 19.1 10.9 20 12 20C13.1 20 14 19.1 14 18C14 16.9 13.1 16 12 16Z">
+                        </path>
+                      </svg></span></button></span></div>
+            </div>
+            <div class="sc-pzZNP itHXfc" style="position: relative;">
+              <div style="overflow: visible; height: 0px; width: 0px;">
+                <div aria-label="grid" aria-readonly="true"
+                  class="ReactVirtualized__Grid ReactVirtualized__List sc-qanuI dGHoBg" role="grid" tabindex="0"
+                  style="box-sizing: border-box; direction: ltr; height: 830px; position: relative; width: 320px; will-change: transform; overflow: hidden;">
+                  <div class="ReactVirtualized__Grid__innerScrollContainer" role="rowgroup"
+                    style="width: auto; height: 64px; max-width: 320px; max-height: 64px; overflow: hidden; position: relative;">
+                    <div class="sc-pByoR dLMTTi"
+                      style="height: 64px; left: 0px; position: absolute; top: 0px; width: 100%;">
+                      <div role="button" class="sc-oToFz lAakv selected">
+                        <div class="sc-pbzxR jWVmqW tradable" data-security-id="8">
+                          <div class="sc-pRdeG ccRamS sc-pjtZy bZfyjH first">
+                            <p class="sc-fzqBZW hGvMLa sc-pYZcj ffynVg weightMedium"><span title="LKOH">LKOH</span></p>
+                            <p class="sc-fzoyAV xLNRp sc-oTDAo iPLCIH colorSecondary"><span title="MOEX: ЛУКОЙЛ">MOEX:
+                                ЛУКОЙЛ</span></p>
+                          </div>
+                          <div class="sc-pRdeG ccRamS sc-pjtZy bZfyjH">
+                            <p class="sc-fzqBZW hGvMLa sc-pYZcj ffynVg weightMedium"><span
+                                class="sc-pbJGu iVXZUI change_positive">RUB&nbsp;5,419.0</span></p>
+                            <p class="sc-fzoyAV xLNRp sc-oTDAo iPLCIH colorSecondary">14:07:05</p>
+                          </div>
+                          <div class="sc-pRdeG ccRamS sc-pjtZy bZfyjH last">
+                            <p class="sc-fzqBZW hGvMLa sc-pYZcj ffynVg weightMedium"><span
+                                class="sc-prpXb KzvMF positive">1.90&nbsp;%</span></p>
+                            <p class="sc-fzoyAV xLNRp sc-oTDAo iPLCIH colorSecondary"><span
+                                class="sc-prpXb KzvMF positive">101.0</span></p>
+                          </div>
+                          <div class="sc-qYRsW htjyTI sc-qQLmQ gGVzbe">
+                            <div class="sc-pBmFw gLkaZA">
+                              <div data-test="favorite-toggle-button" title="Удалить из Избранного"
+                                class="sc-pkjoF EEQOa"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                  viewBox="0 0 24 24" class="sc-AxgMl fePhHC sc-psEpA bdrbgN" data-test="remove">
+                                  <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M12 15.6L7.29772 18.4721L8.5762 13.1125L4.39155 9.52786L9.88397 9.08754L12 4L14.116 9.08754L19.6085 9.52786L15.4238 13.1125L16.7023 18.4721L12 15.6Z">
+                                  </path>
+                                </svg></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="resize-triggers">
+                <div class="expand-trigger">
+                  <div style="width: 321px; height: 831px;"></div>
+                </div>
+                <div class="contract-trigger"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-qYETL jXtNZH">
+        <header>
+          <div class="sc-AxjAm kftIZz sc-oULiq cYMoNQ elevation2">
+            <div class="sc-pdizT dlFfwJ">
+              <div class="sc-pckDb hBIdyw">
+                <div id="search-panel" class="sc-pjIrY eIxaKD">
+                  <div class="sc-psfJB cKcyrb"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                      viewBox="0 0 24 24" class="sc-AxgMl fePhHC sc-qQUYa JA-dkm">
+                      <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M15.502 14H14.708L14.432 13.726C15.407 12.589 16 11.115 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.115 16 12.588 15.408 13.725 14.434L14.001 14.708V15.5L18.999 20.491L20.49 19L15.502 14ZM9.5 14C7.014 14 5 11.986 5 9.5C5 7.015 7.014 5 9.5 5C11.985 5 14 7.015 14 9.5C14 11.986 11.985 14 9.5 14Z">
+                      </path>
+                    </svg></div>
+                  <div class="sc-qZspD dqZMhO">
+                    <div class="sc-pbzxR jWVmqW dense" data-security-id="8">
+                      <div class="sc-pRdeG ccRamS sc-pjtZy bZfyjH first">
+                        <p class="sc-fzqBZW hGvMLa sc-pYZcj ffynVg weightMedium"><span title="LKOH">LKOH</span></p>
+                        <p class="sc-fzoyAV xLNRp sc-oTDAo iPLCIH colorSecondary"><span title="MOEX: ЛУКОЙЛ">MOEX:
+                            ЛУКОЙЛ</span></p>
+                      </div>
+                      <div class="sc-pRdeG ccRamS sc-pjtZy bZfyjH">
+                        <p class="sc-fzqBZW hGvMLa sc-pYZcj ffynVg weightMedium"><span
+                            class="sc-pbJGu iVXZUI change_positive">RUB&nbsp;5,419.0</span></p>
+                        <p class="sc-fzoyAV xLNRp sc-oTDAo iPLCIH colorSecondary">14:07:05</p>
+                      </div>
+                      <div class="sc-pRdeG ccRamS sc-pjtZy bZfyjH last">
+                        <p class="sc-fzqBZW hGvMLa sc-pYZcj ffynVg weightMedium"><span
+                            class="sc-prpXb KzvMF positive">1.90&nbsp;%</span></p>
+                        <p class="sc-fzoyAV xLNRp sc-oTDAo iPLCIH colorSecondary"><span
+                            class="sc-prpXb KzvMF positive">101.0</span></p>
+                      </div>
+                      <div class="sc-qYRsW htjyTI sc-qQLmQ gGVzbe">
+                        <div class="sc-pBmFw gLkaZA">
+                          <div data-test="favorite-toggle-button" title="Удалить из Избранного" class="sc-pkjoF EEQOa">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                              class="sc-AxgMl fePhHC sc-psEpA bdrbgN" data-test="remove">
+                              <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M12 15.6L7.29772 18.4721L8.5762 13.1125L4.39155 9.52786L9.88397 9.08754L12 4L14.116 9.08754L19.6085 9.52786L15.4238 13.1125L16.7023 18.4721L12 15.6Z">
+                              </path>
+                            </svg></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div><span class="sc-fzqARJ fTliZb sc-qPXbi kvvtUI"><button type="button" class="sc-fzqNqU bSpCFI"
+                  id="alert-form-open-button"><span class="sc-fzoyTs jZUSDr"><svg xmlns="http://www.w3.org/2000/svg"
+                      width="24" height="24" viewBox="0 0 24 24" class="sc-AxgMl fePhHC">
+                      <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M18.88 15.82V10C18.88 6.75 16.63 4.03 13.59 3.31V2.59C13.59 1.71 12.88 1 12 1C11.12 1 10.41 1.71 10.41 2.59V3.31C7.37 4.03 5.12 6.75 5.12 10V15.82L3 17.94V19H21V17.94L18.88 15.82ZM10.01 20.01C10.01 21.11 10.9 22 12 22C13.1 22 13.99 21.11 13.99 20.01H10.01ZM13 12.01H16V10H13V7H11V10H8V12.01H11V15.01H13V12.01Z">
+                      </path>
+                    </svg></span></button></span>
+              <div class="sc-pQGev lbdMzz asideVisible">
+                <div title=""><button type="button" class="sc-Axmtr sc-AxmLO hFWTLP"
+                    id="order-button-open-form">Заявка</button></div><a type="button"
+                  href="https://www.finam.ru/open/order/russia/" class="sc-Axmtr sc-fzoLsD jIMIEC sc-pYCRO QkzgN"
+                  color="primary" target="_blank">Live trading</a>
+              </div>
+            </div>
+            <div class="sc-pkGoQ KLwXM">
+              <div class="sc-pAytO fbvEUZ asideVisible">
+                <p class="sc-fzoyAV xLNRp sc-pIVLr eogaff colorSecondary">Москва 02.06.2020, 14:07:06</p>
+                <p class="sc-fzoyAV xLNRp sc-pQtAo hyTNHF colorSecondary"><span>Статус биржи: </span><span
+                    class="sc-pYQRR jTJzex">открыта</span></p>
+              </div>
+            </div>
+            <div class="sc-ptdGt ePHOSB">
+              <div><span class="sc-fzqARJ fTliZb"><button type="button" class="sc-fzqNqU bSpCFI"
+                    id="settings-menu-button"><span class="sc-fzoyTs jZUSDr"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="24" height="24" viewBox="0 0 24 24" class="sc-AxgMl fePhHC">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 5C13.66 5 15 6.34 15 8C15 9.66 13.66 11 12 11C10.34 11 9 9.66 9 8C9 6.34 10.34 5 12 5ZM6 15.98C7.29 17.92 9.5 19.2 12 19.2C14.5 19.2 16.71 17.92 18 15.98C17.97 13.99 13.99 12.9 12 12.9C10 12.9 6.03 13.99 6 15.98Z">
+                        </path>
+                      </svg></span></button></span></div>
+            </div>
+          </div>
+        </header>
+        <div id="content-root" class="sc-pBzeH fDnPAL">
+          <div class="sc-pJUfC kswRrU">
+            <div class="sc-pLxQr dlxlap">
+              <div class="sc-AxjAm kftIZz sc-pTSbw gOmWnw elevation1">
+                <div class="sc-qcpsZ hkkdnF">
+                  <div class="sc-pIxCL izwuBA">
+                    <div class="sc-pmjoL bgZXuE">
+                      <div class="sc-puEpG jCnNCp" style="position: relative;"><canvas width="252" height="312"
+                          style="width: 252px; height: 312px;"></canvas>
+                        <div class="erd_scroll_detection_container erd_scroll_detection_container_animation_active"
+                          style="visibility: hidden; display: inline; width: 0px; height: 0px; z-index: -1; overflow: hidden; margin: 0px; padding: 0px;">
+                          <div dir="ltr" class="erd_scroll_detection_container"
+                            style="position: absolute; flex: 0 0 auto; overflow: hidden; z-index: -1; visibility: hidden; width: 100%; height: 100%; left: 0px; top: 0px;">
+                            <div class="erd_scroll_detection_container"
+                              style="position: absolute; flex: 0 0 auto; overflow: hidden; z-index: -1; visibility: hidden; left: -16px; top: -16px; right: -15px; bottom: -15px;">
+                              <div
+                                style="position: absolute; flex: 0 0 auto; overflow: scroll; z-index: -1; visibility: hidden; width: 100%; height: 100%;">
+                                <div style="position: absolute; left: 0px; top: 0px; width: 293px; height: 361px;">
+                                </div>
+                              </div>
+                              <div
+                                style="position: absolute; flex: 0 0 auto; overflow: scroll; z-index: -1; visibility: hidden; width: 100%; height: 100%;">
+                                <div style="position: absolute; width: 200%; height: 200%;"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div>
+                        <div>
+                          <div></div>
+                        </div>
+                        <div class="sc-ptzVK oROEd" data-test="infoBar">
+                          <div class="sc-qPALR fJpcDI">
+                            <div class="sc-pQSgn yWrkR">
+                              <div class="sc-fznAgC ioYSG sc-pcJTU fYBEoO hasValue"><button type="button"
+                                  class="sc-fznLPX sc-fzqAui kKCaxY">H1<svg xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24" class="sc-AxgMl fePhHC sc-fzqMdD xevgn">
+                                    <path d="M7 10L12 15L17 10H7Z"></path>
+                                  </svg></button><input name="pitch" type="text" class="sc-fzoJus bPIkEp"></div>
+                            </div>
+                          </div>
+                          <div data-test="ohlcPanel" class="sc-pzNoE jOmXfc">
+                            <ul class="sc-pQGwS llZDGk">
+                              <li class="sc-pYCzr hufbAc">
+                                <p class="sc-fzqBZW hGvMLa sc-oUa-dg eJkGNH">O</p>
+                                <p class="sc-fzqBZW hGvMLa sc-pbWfF licDYs"><span
+                                    style="color: rgb(92, 168, 133);">4355.5</span></p>
+                              </li>
+                              <li class="sc-pYCzr hufbAc">
+                                <p class="sc-fzqBZW hGvMLa sc-oUa-dg eJkGNH">H</p>
+                                <p class="sc-fzqBZW hGvMLa sc-pbWfF licDYs"><span
+                                    style="color: rgb(92, 168, 133);">4416.5</span></p>
+                              </li>
+                              <li class="sc-pYCzr hufbAc">
+                                <p class="sc-fzqBZW hGvMLa sc-oUa-dg eJkGNH">L</p>
+                                <p class="sc-fzqBZW hGvMLa sc-pbWfF licDYs"><span
+                                    style="color: rgb(92, 168, 133);">4313.0</span></p>
+                              </li>
+                              <li class="sc-pYCzr hufbAc">
+                                <p class="sc-fzqBZW hGvMLa sc-oUa-dg eJkGNH">C</p>
+                                <p class="sc-fzqBZW hGvMLa sc-pbWfF licDYs"><span
+                                    style="color: rgb(92, 168, 133);">4375.0</span></p>
+                              </li>
+                              <li class="sc-pYCzr hufbAc">
+                                <p class="sc-fzqBZW hGvMLa sc-oUa-dg eJkGNH">V</p>
+                                <p class="sc-fzqBZW hGvMLa sc-pbWfF licDYs"><span
+                                    style="color: rgb(92, 168, 133);">406k</span></p>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div class="sc-qOhCc bdSQfk" data-test="chartControls">
+                          <div class="sc-qWdEB emvJfj">
+                            <div class="sc-pLxsY fDAnPV">
+                              <div><span class="sc-fzqARJ fTliZb"><button type="button" class="sc-fzqNqU bSpCFI dense"
+                                    data-test="showTools"><span class="sc-fzoyTs jZUSDr"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        class="sc-AxgMl fePhHC">
+                                        <path
+                                          d="M3 17.253v3.75h3.75l11.06-11.06-3.75-3.75L3 17.253zm17.71-10.21a.996.996 0 0 0 0-1.41l-2.34-2.34a.996.996 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z">
+                                        </path>
+                                      </svg></span></button></span></div><span class="sc-fzqARJ fTliZb"><button
+                                  type="button" class="sc-fzqNqU bSpCFI dense" data-test="toggleLegend"><span
+                                    class="sc-fzoyTs jZUSDr"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                      height="24" viewBox="0 0 24 24" class="sc-AxgMl fePhHC">
+                                      <path
+                                        d="M7 2.5L4 4 2.5 7 0 0l7 2.5zM6 7.994A2 2 0 0 1 8.006 6h9.988C19.102 6 20 6.895 20 7.994v12.012A2 2 0 0 1 17.994 22H8.006A2.001 2.001 0 0 1 6 20.006V7.994zM9 9v2h8V9H9zm0 4v2h8v-2H9zm0 4v2h8v-2H9z"
+                                        fill-rule="evenodd"></path>
+                                    </svg></span></button></span>
+                              <div><span class="sc-fzqARJ fTliZb"><button type="button" class="sc-fzqNqU bSpCFI dense"
+                                    data-test="showIndicators"><span class="sc-fzoyTs jZUSDr"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        class="sc-AxgMl fePhHC">
+                                        <path
+                                          d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9h-4v4h-2v-4H9V9h4V5h2v4h4v2z">
+                                        </path>
+                                      </svg></span></button></span>
+                                <div></div>
+                              </div><span class="sc-fzqARJ fTliZb"><button type="button" class="sc-fzqNqU bSpCFI dense"
+                                  data-test="showSettings"><span class="sc-fzoyTs jZUSDr"><svg
+                                      xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                      class="sc-AxgMl fePhHC">
+                                      <path d="M17 9H15V3H17V5H21V7H17V9Z"></path>
+                                      <path d="M3 7V5H13V7H3Z"></path>
+                                      <path d="M3 19V17H9V19H3Z"></path>
+                                      <path d="M13 21V19H21V17H13V15H11V21H13Z"></path>
+                                      <path d="M7 11V9H9V15H7V13H3V11H7Z"></path>
+                                      <path d="M21 13V11H11V13H21Z"></path>
+                                    </svg></span></button></span><span class="sc-fzqARJ fTliZb"><button type="button"
+                                  class="sc-fzqNqU bSpCFI dense" data-test="reset"><span class="sc-fzoyTs jZUSDr"><svg
+                                      xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                      class="sc-AxgMl fePhHC">
+                                      <g transform="translate(1,3)">
+                                        <path
+                                          d="M3,9 C3,4.02943725 7.02943725,0 12,0 C16.9705627,0 21,4.02943725 21,9 C21,13.9705627 16.9705627,18 12,18 L12,16 C15.8659932,16 19,12.8659932 19,9 C19,5.13400675 15.8659932,2 12,2 C8.13400675,2 5,5.13400675 5,9 L8,9 L4,13.5 L0,9 L3,9 Z">
+                                        </path>
+                                      </g>
+                                    </svg></span></button></span>
+                            </div>
+                          </div>
+                          <div class="sc-pLxsY fDAnPV">
+                            <div class="sc-ptTHP ckjlQy"><span class="sc-fzqARJ fTliZb"><button type="button"
+                                  class="sc-fzqNqU bSpCFI dense" data-test="scrollLeft"><span
+                                    class="sc-fzoyTs jZUSDr"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                      height="24" viewBox="0 0 24 24" class="sc-AxgMl fePhHC">
+                                      <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path>
+                                    </svg></span></button></span><span class="sc-fzqARJ fTliZb"><button type="button"
+                                  class="sc-fzqNqU bSpCFI dense" data-test="zoomOut"><span class="sc-fzoyTs jZUSDr"><svg
+                                      xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                      class="sc-AxgMl fePhHC">
+                                      <path fill-rule="evenodd" clip-rule="evenodd" d="M5 11V13H19V11H5Z"></path>
+                                    </svg></span></button></span><span class="sc-fzqARJ fTliZb"><button type="button"
+                                  class="sc-fzqNqU bSpCFI dense" data-test="zoomIn"><span class="sc-fzoyTs jZUSDr"><svg
+                                      xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                      class="sc-AxgMl fePhHC">
+                                      <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M13 11V5H11V11H5V13H11V19H13V13H19V11H13Z"></path>
+                                    </svg></span></button></span><span class="sc-fzqARJ fTliZb"><button type="button"
+                                  class="sc-fzqNqU bSpCFI dense" data-test="scrollRight"><span
+                                    class="sc-fzoyTs jZUSDr"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                      height="24" viewBox="0 0 24 24" class="sc-AxgMl fePhHC">
+                                      <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>
+                                    </svg></span></button></span></div>
+                          </div>
+                          <div class="sc-pDcsd cRZkIW"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="sc-oVrtG bnnUPS">
+                  <div class="sc-plWxd dyjiDm">
+                    <div class="sc-qWeMO bMEhQb">
+                      <div role="button" id="security-details-close-button" class="sc-qPXtF geNBzd"><span
+                          title="Скрыть детали инструмента" class="sc-qYsuA jDsubJ"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            class="sc-AxgMl fePhHC sc-pCPXO dbhMVG">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M16.6 8.59998L12 13.2L7.4 8.59998L6 9.99998L12 16L18 9.99998L16.6 8.59998Z"></path>
+                          </svg></span></div>
+                    </div>
+                    <div data-test="securityDetails" class="sc-qOhZv xutDM">
+                      <div>
+                        <h6 class="sc-fzqNJr llwsgf sc-ptTkw eVzIVi weightMedium">Рыночные данные</h6>
+                        <div class="sc-psorm hxxXzh">
+                          <div class="sc-qPMSF kZNRqE">
+                            <div class="sc-pAAKw iVeVPq">
+                              <p class="sc-fzoyAV xLNRp sc-pIYbZ fXMRPC colorSecondary" title="Цена спроса (наивысшая цена)
+по которой есть ожидающая удовлетворения
+заявка на покупку">Bid</p>
+                              <p class="sc-fzoyAV xLNRp sc-pIYbZ fXMRPC colorSecondary" title="Объем">Объем</p>
+                            </div>
+                            <div class="sc-pAAKw iVeVPq">
+                              <p class="sc-fzqBZW hGvMLa sc-pQrjG fvBRnD bid weightMedium" title="Цена спроса (наивысшая цена)
+по которой есть ожидающая удовлетворения
+заявка на покупку">5,417.0</p>
+                              <p class="sc-fzqBZW hGvMLa sc-pQrjG fvBRnD weightMedium" title="Объем">331</p>
+                            </div>
+                          </div>
+                          <div class="sc-qXJKU cHKXqv">
+                            <div class="sc-pAAKw iVeVPq">
+                              <p class="sc-fzoyAV xLNRp sc-pIYbZ fXMRPC colorSecondary" title="Цена предложения (наинизшая цена)
+по которой есть ожидающая удовлетворения
+заявка на продажу">Ask</p>
+                              <p class="sc-fzoyAV xLNRp sc-pIYbZ fXMRPC colorSecondary" title="Объем">Объем</p>
+                            </div>
+                            <div class="sc-pAAKw iVeVPq">
+                              <p class="sc-fzqBZW hGvMLa sc-pQrjG fvBRnD ask weightMedium" title="Цена предложения (наинизшая цена)
+по которой есть ожидающая удовлетворения
+заявка на продажу">5,419.0</p>
+                              <p class="sc-fzqBZW hGvMLa sc-pQrjG fvBRnD weightMedium" title="Объем">81</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div>
+                          <div class="sc-pKKMW uZZEQ">
+                            <p class="sc-fzoyAV xLNRp sc-oVeUv gqllrd colorSecondary" title="Диапазон, в пределах которого изменялась
+цена в течение торгового дня">Дневной диапазон</p>
+                            <div class="sc-pTFCl cymmvr">
+                              <p class="sc-fzqBZW hGvMLa sc-qbCpE fFcKUf colorPrimary weightMedium" title="Минимальная цена достигнутая
+в течение торгового дня">5,340.0</p>
+                              <p class="sc-fzqBZW hGvMLa sc-qbCpE fFcKUf colorPrimary weightMedium" title="Максимальная цена достигнутая
+в течение торгового дня">5,433.0</p>
+                            </div>
+                          </div>
+                          <div class="sc-ptbpL eJaaBc positive">
+                            <div class="sc-qYwJt gzLAwH" style="margin-left: 18%; width: 67%;"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                class="sc-AxgMl fePhHC sc-pCNZD eFTyVO">
+                                <path d="M8 5v14l11-7z"></path>
+                                <path fill="none" d="M0 0h24v24H0z"></path>
+                              </svg></div>
+                            <div class="sc-qPZrQ cKrvxZ"></div>
+                          </div>
+                          <div class="sc-pdbHO daKkpD">
+                            <div class="sc-pYOBj bRChZn">
+                              <div title="Количество бумаг или контрактов, которые
+были куплены или проданы за торговый день" class="sc-oUNyY gYa-dCS">
+                                <p class="sc-fzoyAV xLNRp sc-pdkQB eNujGe colorSecondary">Объем</p>
+                                <p class="sc-fzoyAV xLNRp sc-pkDYi fPyLRl">632,059</p>
+                              </div>
+                              <div title="Суммарный денежный оборот
+за торговый день" class="sc-oUNyY gYa-dCS">
+                                <p class="sc-fzoyAV xLNRp sc-pdkQB eNujGe colorSecondary">Оборот</p>
+                                <p class="sc-fzoyAV xLNRp sc-pkDYi fPyLRl">3,407,949,059</p>
+                              </div>
+                            </div>
+                            <div class="sc-pYOBj bRChZn">
+                              <div title="Время последней сделки" class="sc-oUNyY gYa-dCS">
+                                <p class="sc-fzoyAV xLNRp sc-pdkQB eNujGe colorSecondary">Время</p>
+                                <p class="sc-fzoyAV xLNRp sc-pkDYi fPyLRl">14:07</p>
+                              </div>
+                              <div title="Предыдущее закрытие" class="sc-oUNyY gYa-dCS">
+                                <p class="sc-fzoyAV xLNRp sc-pdkQB eNujGe colorSecondary">Пред. закр.</p>
+                                <p class="sc-fzoyAV xLNRp sc-pkDYi fPyLRl">5,318.0</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="sc-pDayO iXtbpF">
+                        <div class="sc-pIldA fTmLCi">
+                          <h6 class="sc-fzqNJr llwsgf weightMedium">Биржевой стакан</h6>
+                          <div class="sc-pQeKv ebxMyU">
+                            <p class="sc-fzoyAV xLNRp sc-pYbCK hFTajN colorSecondary">Bid</p>
+                            <p class="sc-fzoyAV xLNRp sc-pYbCK sc-oUAZN cmfQvt colorSecondary"
+                              data-test="orderBookVolumeMode">Объем</p>
+                            <p class="sc-fzoyAV xLNRp sc-pYbCK hFTajN colorSecondary">Ask</p>
+                          </div>
+                          <div data-test="orderBookTable" class="sc-pcxSc iBMijp">
+                            <div class="sc-pkryX dKCOua">
+                              <div class="sc-pcKrn fOUSyZ clickable">
+                                <div class="sc-pAoll llqrNQ">
+                                  <div class="sc-pZpft lmyjGa">
+                                    <div class="sc-oUmZK cjsfyD positive" style="transform: scale(0.01, 1);"></div>
+                                  </div>
+                                </div>
+                                <p class="sc-fzoyAV xLNRp sc-pleCs iCvOAj">5,419.0</p>
+                                <p class="sc-fzoyAV xLNRp sc-qXWkf khIyDh colorSecondary"></p>
+                                <p class="sc-fzoyAV xLNRp sc-ptBTV eEIUK colorSecondary"><span>84</span></p>
+                              </div>
+                              <div class="sc-pcKrn fOUSyZ clickable">
+                                <div class="sc-pAoll llqrNQ">
+                                  <div class="sc-pZpft lmyjGa">
+                                    <div class="sc-oUmZK cjsfyD positive" style="transform: scale(0.01, 1);"></div>
+                                  </div>
+                                </div>
+                                <p class="sc-fzoyAV xLNRp sc-pleCs iCvOAj">5,418.0</p>
+                                <p class="sc-fzoyAV xLNRp sc-qXWkf khIyDh colorSecondary"></p>
+                                <p class="sc-fzoyAV xLNRp sc-ptBTV eEIUK colorSecondary"><span>67</span></p>
+                              </div>
+                              <div class="sc-pcKrn fOUSyZ clickable">
+                                <div class="sc-pAoll llqrNQ">
+                                  <div class="sc-pZpft lmyjGa">
+                                    <div class="sc-oUmZK cjsfyD positive" style="transform: scale(0.03, 1);"></div>
+                                  </div>
+                                </div>
+                                <p class="sc-fzoyAV xLNRp sc-pleCs iCvOAj">5,417.5</p>
+                                <p class="sc-fzoyAV xLNRp sc-qXWkf khIyDh colorSecondary"></p>
+                                <p class="sc-fzoyAV xLNRp sc-ptBTV eEIUK colorSecondary"><span>239</span></p>
+                              </div>
+                              <div class="sc-pcKrn fOUSyZ clickable">
+                                <div class="sc-pAoll llqrNQ">
+                                  <div class="sc-pZpft lmyjGa">
+                                    <div class="sc-oUmZK cjsfyD positive" style="transform: scale(0.09, 1);"></div>
+                                  </div>
+                                </div>
+                                <p class="sc-fzoyAV xLNRp sc-pleCs iCvOAj">5,417.0</p>
+                                <p class="sc-fzoyAV xLNRp sc-qXWkf khIyDh colorSecondary"></p>
+                                <p class="sc-fzoyAV xLNRp sc-ptBTV eEIUK colorSecondary"><span>735</span></p>
+                              </div>
+                              <div class="sc-pcKrn fOUSyZ clickable">
+                                <div class="sc-pAoll llqrNQ">
+                                  <div class="sc-pZpft lmyjGa">
+                                    <div class="sc-oUmZK cjsfyD positive" style="transform: scale(0.09, 1);"></div>
+                                  </div>
+                                </div>
+                                <p class="sc-fzoyAV xLNRp sc-pleCs iCvOAj">5,416.5</p>
+                                <p class="sc-fzoyAV xLNRp sc-qXWkf khIyDh colorSecondary"></p>
+                                <p class="sc-fzoyAV xLNRp sc-ptBTV eEIUK colorSecondary"><span>73</span></p>
+                              </div>
+                              <div class="sc-pcKrn fOUSyZ clickable">
+                                <div class="sc-pAoll llqrNQ">
+                                  <div class="sc-pZpft lmyjGa">
+                                    <div class="sc-oUmZK cjsfyD positive" style="transform: scale(0.1, 1);"></div>
+                                  </div>
+                                </div>
+                                <p class="sc-fzoyAV xLNRp sc-pleCs iCvOAj">5,416.0</p>
+                                <p class="sc-fzoyAV xLNRp sc-qXWkf khIyDh colorSecondary"></p>
+                                <p class="sc-fzoyAV xLNRp sc-ptBTV eEIUK colorSecondary"><span>40</span></p>
+                              </div>
+                              <div class="sc-pcKrn fOUSyZ clickable">
+                                <div class="sc-pAoll llqrNQ">
+                                  <div class="sc-pZpft lmyjGa">
+                                    <div class="sc-oUmZK cjsfyD positive" style="transform: scale(0.11, 1);"></div>
+                                  </div>
+                                </div>
+                                <p class="sc-fzoyAV xLNRp sc-pleCs iCvOAj">5,415.5</p>
+                                <p class="sc-fzoyAV xLNRp sc-qXWkf khIyDh colorSecondary"></p>
+                                <p class="sc-fzoyAV xLNRp sc-ptBTV eEIUK colorSecondary"><span>170</span></p>
+                              </div>
+                              <div class="sc-pcKrn fOUSyZ clickable">
+                                <div class="sc-pAoll llqrNQ">
+                                  <div class="sc-pZpft lmyjGa">
+                                    <div class="sc-oUmZK cjsfyD positive" style="transform: scale(0.12, 1);"></div>
+                                  </div>
+                                </div>
+                                <p class="sc-fzoyAV xLNRp sc-pleCs iCvOAj">5,415.0</p>
+                                <p class="sc-fzoyAV xLNRp sc-qXWkf khIyDh colorSecondary"></p>
+                                <p class="sc-fzoyAV xLNRp sc-ptBTV eEIUK colorSecondary"><span>189</span></p>
+                              </div>
+                              <div class="sc-pcKrn fOUSyZ clickable">
+                                <div class="sc-pAoll llqrNQ">
+                                  <div class="sc-pZpft lmyjGa">
+                                    <div class="sc-oUmZK cjsfyD positive" style="transform: scale(0.14, 1);"></div>
+                                  </div>
+                                </div>
+                                <p class="sc-fzoyAV xLNRp sc-pleCs iCvOAj">5,414.5</p>
+                                <p class="sc-fzoyAV xLNRp sc-qXWkf khIyDh colorSecondary"></p>
+                                <p class="sc-fzoyAV xLNRp sc-ptBTV eEIUK colorSecondary"><span>251</span></p>
+                              </div>
+                              <div class="sc-pcKrn fOUSyZ clickable">
+                                <div class="sc-pAoll llqrNQ">
+                                  <div class="sc-pZpft lmyjGa">
+                                    <div class="sc-oUmZK cjsfyD positive" style="transform: scale(0.16, 1);"></div>
+                                  </div>
+                                </div>
+                                <p class="sc-fzoyAV xLNRp sc-pleCs iCvOAj">5,414.0</p>
+                                <p class="sc-fzoyAV xLNRp sc-qXWkf khIyDh colorSecondary"></p>
+                                <p class="sc-fzoyAV xLNRp sc-ptBTV eEIUK colorSecondary"><span>269</span></p>
+                              </div>
+                              <div class="sc-pcKrn fOUSyZ clickable">
+                                <div class="sc-pAoll llqrNQ">
+                                  <div class="sc-pZpft lmyjGa">
+                                    <div class="sc-oUmZK cjsfyD positive" style="transform: scale(0.18, 1);"></div>
+                                  </div>
+                                </div>
+                                <p class="sc-fzoyAV xLNRp sc-pleCs iCvOAj">5,413.5</p>
+                                <p class="sc-fzoyAV xLNRp sc-qXWkf khIyDh colorSecondary"></p>
+                                <p class="sc-fzoyAV xLNRp sc-ptBTV eEIUK colorSecondary"><span>184</span></p>
+                              </div>
+                              <div class="sc-pcKrn fOUSyZ clickable">
+                                <div class="sc-pAoll llqrNQ">
+                                  <div class="sc-pZpft lmyjGa">
+                                    <div class="sc-oUmZK cjsfyD positive" style="transform: scale(0.19, 1);"></div>
+                                  </div>
+                                </div>
+                                <p class="sc-fzoyAV xLNRp sc-pleCs iCvOAj">5,413.0</p>
+                                <p class="sc-fzoyAV xLNRp sc-qXWkf khIyDh colorSecondary"></p>
+                                <p class="sc-fzoyAV xLNRp sc-ptBTV eEIUK colorSecondary"><span>149</span></p>
+                              </div>
+                              <div class="sc-pcKrn fOUSyZ clickable">
+                                <div class="sc-pAoll llqrNQ">
+                                  <div class="sc-pZpft lmyjGa">
+                                    <div class="sc-oUmZK cjsfyD positive" style="transform: scale(0.21, 1);"></div>
+                                  </div>
+                                </div>
+                                <p class="sc-fzoyAV xLNRp sc-pleCs iCvOAj">5,412.5</p>
+                                <p class="sc-fzoyAV xLNRp sc-qXWkf khIyDh colorSecondary"></p>
+                                <p class="sc-fzoyAV xLNRp sc-ptBTV eEIUK colorSecondary"><span>329</span></p>
+                              </div>
+                              <div class="sc-pcKrn fOUSyZ clickable">
+                                <div class="sc-pAoll llqrNQ">
+                                  <div class="sc-pZpft lmyjGa">
+                                    <div class="sc-oUmZK cjsfyD positive" style="transform: scale(0.21, 1);"></div>
+                                  </div>
+                                </div>
+                                <p class="sc-fzoyAV xLNRp sc-pleCs iCvOAj">5,412.0</p>
+                                <p class="sc-fzoyAV xLNRp sc-qXWkf khIyDh colorSecondary"></p>
+                                <p class="sc-fzoyAV xLNRp sc-ptBTV eEIUK colorSecondary"><span>1</span></p>
+                              </div>
+                              <div class="sc-pcKrn fOUSyZ clickable">
+                                <div class="sc-pAoll llqrNQ">
+                                  <div class="sc-pZpft lmyjGa">
+                                    <div class="sc-oUmZK cjsfyD positive" style="transform: scale(0.23, 1);"></div>
+                                  </div>
+                                </div>
+                                <p class="sc-fzoyAV xLNRp sc-pleCs iCvOAj">5,411.5</p>
+                                <p class="sc-fzoyAV xLNRp sc-qXWkf khIyDh colorSecondary"></p>
+                                <p class="sc-fzoyAV xLNRp sc-ptBTV eEIUK colorSecondary"><span>195</span></p>
+                              </div>
+                              <div class="sc-pcKrn fOUSyZ clickable">
+                                <div class="sc-pAoll llqrNQ">
+                                  <div class="sc-pZpft lmyjGa">
+                                    <div class="sc-oUmZK cjsfyD positive" style="transform: scale(0.24, 1);"></div>
+                                  </div>
+                                </div>
+                                <p class="sc-fzoyAV xLNRp sc-pleCs iCvOAj">5,411.0</p>
+                                <p class="sc-fzoyAV xLNRp sc-qXWkf khIyDh colorSecondary"></p>
+                                <p class="sc-fzoyAV xLNRp sc-ptBTV eEIUK colorSecondary"><span>179</span></p>
+                              </div>
+                              <div class="sc-pcKrn fOUSyZ clickable">
+                                <div class="sc-pAoll llqrNQ">
+                                  <div class="sc-pZpft lmyjGa">
+                                    <div class="sc-oUmZK cjsfyD positive" style="transform: scale(0.25, 1);"></div>
+                                  </div>
+                                </div>
+                                <p class="sc-fzoyAV xLNRp sc-pleCs iCvOAj">5,410.5</p>
+                                <p class="sc-fzoyAV xLNRp sc-qXWkf khIyDh colorSecondary"></p>
+                                <p class="sc-fzoyAV xLNRp sc-ptBTV eEIUK colorSecondary"><span>76</span></p>
+                              </div>
+                              <div class="sc-pcKrn fOUSyZ clickable">
+                                <div class="sc-pAoll llqrNQ">
+                                  <div class="sc-pZpft lmyjGa">
+                                    <div class="sc-oUmZK cjsfyD positive" style="transform: scale(0.29, 1);"></div>
+                                  </div>
+                                </div>
+                                <p class="sc-fzoyAV xLNRp sc-pleCs iCvOAj">5,410.0</p>
+                                <p class="sc-fzoyAV xLNRp sc-qXWkf khIyDh colorSecondary"></p>
+                                <p class="sc-fzoyAV xLNRp sc-ptBTV eEIUK colorSecondary"><span>496</span></p>
+                              </div>
+                              <div class="sc-pcKrn fOUSyZ clickable">
+                                <div class="sc-pAoll llqrNQ">
+                                  <div class="sc-pZpft lmyjGa">
+                                    <div class="sc-oUmZK cjsfyD positive" style="transform: scale(0.29, 1);"></div>
+                                  </div>
+                                </div>
+                                <p class="sc-fzoyAV xLNRp sc-pleCs iCvOAj">5,409.5</p>
+                                <p class="sc-fzoyAV xLNRp sc-qXWkf khIyDh colorSecondary"></p>
+                                <p class="sc-fzoyAV xLNRp sc-ptBTV eEIUK colorSecondary"><span>75</span></p>
+                              </div>
+                              <div class="sc-pcKrn fOUSyZ clickable">
+                                <div class="sc-pAoll llqrNQ">
+                                  <div class="sc-pZpft lmyjGa">
+                                    <div class="sc-oUmZK cjsfyD positive" style="transform: scale(0.3, 1);"></div>
+                                  </div>
+                                </div>
+                                <p class="sc-fzoyAV xLNRp sc-pleCs iCvOAj">5,409.0</p>
+                                <p class="sc-fzoyAV xLNRp sc-qXWkf khIyDh colorSecondary"></p>
+                                <p class="sc-fzoyAV xLNRp sc-ptBTV eEIUK colorSecondary"><span>37</span></p>
+                              </div>
+                            </div>
+                            <div class="sc-pkryX dKCOua">
+                              <div class="sc-pcKrn fOUSyZ negative clickable">
+                                <div class="sc-pAoll llqrNQ">
+                                  <div class="sc-pZpft lmyjGa">
+                                    <div class="sc-oUmZK cjsfyD negative" style="transform: scale(0.17, 1);"></div>
+                                  </div>
+                                </div>
+                                <p class="sc-fzoyAV xLNRp sc-pleCs iCvOAj">5,420.0</p>
+                                <p class="sc-fzoyAV xLNRp sc-qXWkf khIyDh colorSecondary"></p>
+                                <p class="sc-fzoyAV xLNRp sc-ptBTV eEIUK colorSecondary"><span>2,142</span></p>
+                              </div>
+                              <div class="sc-pcKrn fOUSyZ negative clickable">
+                                <div class="sc-pAoll llqrNQ">
+                                  <div class="sc-pZpft lmyjGa">
+                                    <div class="sc-oUmZK cjsfyD negative" style="transform: scale(0.17, 1);"></div>
+                                  </div>
+                                </div>
+                                <p class="sc-fzoyAV xLNRp sc-pleCs iCvOAj">5,420.5</p>
+                                <p class="sc-fzoyAV xLNRp sc-qXWkf khIyDh colorSecondary"></p>
+                                <p class="sc-fzoyAV xLNRp sc-ptBTV eEIUK colorSecondary"><span>26</span></p>
+                              </div>
+                              <div class="sc-pcKrn fOUSyZ negative clickable">
+                                <div class="sc-pAoll llqrNQ">
+                                  <div class="sc-pZpft lmyjGa">
+                                    <div class="sc-oUmZK cjsfyD negative" style="transform: scale(0.19, 1);"></div>
+                                  </div>
+                                </div>
+                                <p class="sc-fzoyAV xLNRp sc-pleCs iCvOAj">5,421.0</p>
+                                <p class="sc-fzoyAV xLNRp sc-qXWkf khIyDh colorSecondary"></p>
+                                <p class="sc-fzoyAV xLNRp sc-ptBTV eEIUK colorSecondary"><span>248</span></p>
+                              </div>
+                              <div class="sc-pcKrn fOUSyZ negative clickable">
+                                <div class="sc-pAoll llqrNQ">
+                                  <div class="sc-pZpft lmyjGa">
+                                    <div class="sc-oUmZK cjsfyD negative" style="transform: scale(0.2, 1);"></div>
+                                  </div>
+                                </div>
+                                <p class="sc-fzoyAV xLNRp sc-pleCs iCvOAj">5,421.5</p>
+                                <p class="sc-fzoyAV xLNRp sc-qXWkf khIyDh colorSecondary"></p>
+                                <p class="sc-fzoyAV xLNRp sc-ptBTV eEIUK colorSecondary"><span>198</span></p>
+                              </div>
+                              <div class="sc-pcKrn fOUSyZ negative clickable">
+                                <div class="sc-pAoll llqrNQ">
+                                  <div class="sc-pZpft lmyjGa">
+                                    <div class="sc-oUmZK cjsfyD negative" style="transform: scale(0.25, 1);"></div>
+                                  </div>
+                                </div>
+                                <p class="sc-fzoyAV xLNRp sc-pleCs iCvOAj">5,422.0</p>
+                                <p class="sc-fzoyAV xLNRp sc-qXWkf khIyDh colorSecondary"></p>
+                                <p class="sc-fzoyAV xLNRp sc-ptBTV eEIUK colorSecondary"><span>675</span></p>
+                              </div>
+                              <div class="sc-pcKrn fOUSyZ negative clickable">
+                                <div class="sc-pAoll llqrNQ">
+                                  <div class="sc-pZpft lmyjGa">
+                                    <div class="sc-oUmZK cjsfyD negative" style="transform: scale(0.26, 1);"></div>
+                                  </div>
+                                </div>
+                                <p class="sc-fzoyAV xLNRp sc-pleCs iCvOAj">5,422.5</p>
+                                <p class="sc-fzoyAV xLNRp sc-qXWkf khIyDh colorSecondary"></p>
+                                <p class="sc-fzoyAV xLNRp sc-ptBTV eEIUK colorSecondary"><span>38</span></p>
+                              </div>
+                              <div class="sc-pcKrn fOUSyZ negative clickable">
+                                <div class="sc-pAoll llqrNQ">
+                                  <div class="sc-pZpft lmyjGa">
+                                    <div class="sc-oUmZK cjsfyD negative" style="transform: scale(0.27, 1);"></div>
+                                  </div>
+                                </div>
+                                <p class="sc-fzoyAV xLNRp sc-pleCs iCvOAj">5,423.0</p>
+                                <p class="sc-fzoyAV xLNRp sc-qXWkf khIyDh colorSecondary"></p>
+                                <p class="sc-fzoyAV xLNRp sc-ptBTV eEIUK colorSecondary"><span>119</span></p>
+                              </div>
+                              <div class="sc-pcKrn fOUSyZ negative clickable">
+                                <div class="sc-pAoll llqrNQ">
+                                  <div class="sc-pZpft lmyjGa">
+                                    <div class="sc-oUmZK cjsfyD negative" style="transform: scale(0.27, 1);"></div>
+                                  </div>
+                                </div>
+                                <p class="sc-fzoyAV xLNRp sc-pleCs iCvOAj">5,423.5</p>
+                                <p class="sc-fzoyAV xLNRp sc-qXWkf khIyDh colorSecondary"></p>
+                                <p class="sc-fzoyAV xLNRp sc-ptBTV eEIUK colorSecondary"><span>75</span></p>
+                              </div>
+                              <div class="sc-pcKrn fOUSyZ negative clickable">
+                                <div class="sc-pAoll llqrNQ">
+                                  <div class="sc-pZpft lmyjGa">
+                                    <div class="sc-oUmZK cjsfyD negative" style="transform: scale(0.29, 1);"></div>
+                                  </div>
+                                </div>
+                                <p class="sc-fzoyAV xLNRp sc-pleCs iCvOAj">5,424.0</p>
+                                <p class="sc-fzoyAV xLNRp sc-qXWkf khIyDh colorSecondary"></p>
+                                <p class="sc-fzoyAV xLNRp sc-ptBTV eEIUK colorSecondary"><span>165</span></p>
+                              </div>
+                              <div class="sc-pcKrn fOUSyZ negative clickable">
+                                <div class="sc-pAoll llqrNQ">
+                                  <div class="sc-pZpft lmyjGa">
+                                    <div class="sc-oUmZK cjsfyD negative" style="transform: scale(0.29, 1);"></div>
+                                  </div>
+                                </div>
+                                <p class="sc-fzoyAV xLNRp sc-pleCs iCvOAj">5,424.5</p>
+                                <p class="sc-fzoyAV xLNRp sc-qXWkf khIyDh colorSecondary"></p>
+                                <p class="sc-fzoyAV xLNRp sc-ptBTV eEIUK colorSecondary"><span>123</span></p>
+                              </div>
+                              <div class="sc-pcKrn fOUSyZ negative clickable">
+                                <div class="sc-pAoll llqrNQ">
+                                  <div class="sc-pZpft lmyjGa">
+                                    <div class="sc-oUmZK cjsfyD negative" style="transform: scale(0.79, 1);"></div>
+                                  </div>
+                                </div>
+                                <p class="sc-fzoyAV xLNRp sc-pleCs iCvOAj">5,425.0</p>
+                                <p class="sc-fzoyAV xLNRp sc-qXWkf khIyDh colorSecondary"></p>
+                                <p class="sc-fzoyAV xLNRp sc-ptBTV eEIUK colorSecondary"><span>6,429</span></p>
+                              </div>
+                              <div class="sc-pcKrn fOUSyZ negative clickable">
+                                <div class="sc-pAoll llqrNQ">
+                                  <div class="sc-pZpft lmyjGa">
+                                    <div class="sc-oUmZK cjsfyD negative" style="transform: scale(0.79, 1);"></div>
+                                  </div>
+                                </div>
+                                <p class="sc-fzoyAV xLNRp sc-pleCs iCvOAj">5,425.5</p>
+                                <p class="sc-fzoyAV xLNRp sc-qXWkf khIyDh colorSecondary"></p>
+                                <p class="sc-fzoyAV xLNRp sc-ptBTV eEIUK colorSecondary"><span>26</span></p>
+                              </div>
+                              <div class="sc-pcKrn fOUSyZ negative clickable">
+                                <div class="sc-pAoll llqrNQ">
+                                  <div class="sc-pZpft lmyjGa">
+                                    <div class="sc-oUmZK cjsfyD negative" style="transform: scale(0.87, 1);"></div>
+                                  </div>
+                                </div>
+                                <p class="sc-fzoyAV xLNRp sc-pleCs iCvOAj">5,426.0</p>
+                                <p class="sc-fzoyAV xLNRp sc-qXWkf khIyDh colorSecondary"></p>
+                                <p class="sc-fzoyAV xLNRp sc-ptBTV eEIUK colorSecondary"><span>967</span></p>
+                              </div>
+                              <div class="sc-pcKrn fOUSyZ negative clickable">
+                                <div class="sc-pAoll llqrNQ">
+                                  <div class="sc-pZpft lmyjGa">
+                                    <div class="sc-oUmZK cjsfyD negative" style="transform: scale(0.9, 1);"></div>
+                                  </div>
+                                </div>
+                                <p class="sc-fzoyAV xLNRp sc-pleCs iCvOAj">5,426.5</p>
+                                <p class="sc-fzoyAV xLNRp sc-qXWkf khIyDh colorSecondary"></p>
+                                <p class="sc-fzoyAV xLNRp sc-ptBTV eEIUK colorSecondary"><span>430</span></p>
+                              </div>
+                              <div class="sc-pcKrn fOUSyZ negative clickable">
+                                <div class="sc-pAoll llqrNQ">
+                                  <div class="sc-pZpft lmyjGa">
+                                    <div class="sc-oUmZK cjsfyD negative" style="transform: scale(0.92, 1);"></div>
+                                  </div>
+                                </div>
+                                <p class="sc-fzoyAV xLNRp sc-pleCs iCvOAj">5,427.0</p>
+                                <p class="sc-fzoyAV xLNRp sc-qXWkf khIyDh colorSecondary"></p>
+                                <p class="sc-fzoyAV xLNRp sc-ptBTV eEIUK colorSecondary"><span>300</span></p>
+                              </div>
+                              <div class="sc-pcKrn fOUSyZ negative clickable">
+                                <div class="sc-pAoll llqrNQ">
+                                  <div class="sc-pZpft lmyjGa">
+                                    <div class="sc-oUmZK cjsfyD negative" style="transform: scale(0.94, 1);"></div>
+                                  </div>
+                                </div>
+                                <p class="sc-fzoyAV xLNRp sc-pleCs iCvOAj">5,427.5</p>
+                                <p class="sc-fzoyAV xLNRp sc-qXWkf khIyDh colorSecondary"></p>
+                                <p class="sc-fzoyAV xLNRp sc-ptBTV eEIUK colorSecondary"><span>173</span></p>
+                              </div>
+                              <div class="sc-pcKrn fOUSyZ negative clickable">
+                                <div class="sc-pAoll llqrNQ">
+                                  <div class="sc-pZpft lmyjGa">
+                                    <div class="sc-oUmZK cjsfyD negative" style="transform: scale(0.95, 1);"></div>
+                                  </div>
+                                </div>
+                                <p class="sc-fzoyAV xLNRp sc-pleCs iCvOAj">5,428.0</p>
+                                <p class="sc-fzoyAV xLNRp sc-qXWkf khIyDh colorSecondary"></p>
+                                <p class="sc-fzoyAV xLNRp sc-ptBTV eEIUK colorSecondary"><span>196</span></p>
+                              </div>
+                              <div class="sc-pcKrn fOUSyZ negative clickable">
+                                <div class="sc-pAoll llqrNQ">
+                                  <div class="sc-pZpft lmyjGa">
+                                    <div class="sc-oUmZK cjsfyD negative" style="transform: scale(0.95, 1);"></div>
+                                  </div>
+                                </div>
+                                <p class="sc-fzoyAV xLNRp sc-pleCs iCvOAj">5,428.5</p>
+                                <p class="sc-fzoyAV xLNRp sc-qXWkf khIyDh colorSecondary"></p>
+                                <p class="sc-fzoyAV xLNRp sc-ptBTV eEIUK colorSecondary"><span>17</span></p>
+                              </div>
+                              <div class="sc-pcKrn fOUSyZ negative clickable">
+                                <div class="sc-pAoll llqrNQ">
+                                  <div class="sc-pZpft lmyjGa">
+                                    <div class="sc-oUmZK cjsfyD negative" style="transform: scale(0.98, 1);"></div>
+                                  </div>
+                                </div>
+                                <p class="sc-fzoyAV xLNRp sc-pleCs iCvOAj">5,429.0</p>
+                                <p class="sc-fzoyAV xLNRp sc-qXWkf khIyDh colorSecondary"></p>
+                                <p class="sc-fzoyAV xLNRp sc-ptBTV eEIUK colorSecondary"><span>386</span></p>
+                              </div>
+                              <div class="sc-pcKrn fOUSyZ negative clickable">
+                                <div class="sc-pAoll llqrNQ">
+                                  <div class="sc-pZpft lmyjGa">
+                                    <div class="sc-oUmZK cjsfyD negative" style="transform: scale(1, 1);"></div>
+                                  </div>
+                                </div>
+                                <p class="sc-fzoyAV xLNRp sc-pleCs iCvOAj">5,429.5</p>
+                                <p class="sc-fzoyAV xLNRp sc-qXWkf khIyDh colorSecondary"></p>
+                                <p class="sc-fzoyAV xLNRp sc-ptBTV eEIUK colorSecondary"><span>200</span></p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="sc-qQWDO dxrmGe">
+              <div class="sc-pTWqp gdBFSQ">
+                <div class="sc-qcrrk WTHGa"></div>
+                <div class="sc-qcrrk WTHGa"></div>
+              </div>
+              <div class="sc-AxjAm kftIZz sc-qZtVr dLIPjF elevation1">
+                <header class="sc-pcZJD iLAGzl">
+                  <div class="sc-plVjM cSEwuL">
+                    <div class="sc-ptRml bjWcZt">
+                      <div class="sc-fznAgC ioYSG sc-pQsrT hFyvAS dense hasValue"><button type="button"
+                          id="portfolio-account" class="sc-fznLPX sc-fzqAui kKCaxY">ACP_UN_2FC-UNION<svg
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            class="sc-AxgMl fePhHC sc-fzqMdD xevgn">
+                            <path d="M7 10L12 15L17 10H7Z"></path>
+                          </svg></button><input type="text" class="sc-fzoJus bPIkEp"></div>
+                    </div>
+                    <div class="sc-qOjXG eQihqJ">
+                      <div class="sc-pbYBj fWqrEZ dense" data-test="portfolioBalance">
+                        <div title="Суммарная оценка денежных средств,
+ценных бумаг и обязательств клиента" class="sc-qPlga fTYdCC">
+                          <div class="sc-qXhiz cZKjlG" data-test-id="balance">
+                            <h2 class="sc-fznyAO Vbbtx sc-psQdR cycgqn">400,214.08</h2>
+                            <p class="sc-fzoyAV xLNRp sc-pkUbs crfFDZ colorSecondary">Оценка портфеля</p>
+                          </div>
+                        </div>
+                        <div title="Средства доступные для наращивания позиций" class="sc-qPlga fTYdCC">
+                          <div class="sc-qXhiz cZKjlG" data-test-id="freeFunds">
+                            <h2 class="sc-fznyAO Vbbtx sc-psQdR cycgqn"><span class="sc-pJUVA cclsix">375,624.99</span>
+                            </h2>
+                            <p class="sc-fzoyAV xLNRp sc-pkUbs crfFDZ colorSecondary">Свободно</p>
+                          </div>
+                        </div>
+                        <div title="Прибыль по открытым позициям за всё время" class="sc-qPlga fTYdCC">
+                          <div class="sc-qXhiz cZKjlG isButton" data-test-id="pl">
+                            <h2 class="sc-fznyAO Vbbtx sc-psQdR cycgqn"><span class="sc-pJUVA cclsix">0.00</span></h2>
+                            <p class="sc-fzoyAV xLNRp sc-pkUbs crfFDZ colorSecondary">Прибыль</p>
+                          </div>
+                        </div>
+                        <div id="coverage-indicator" class="sc-qQYBZ ghjoBc security_high"><svg
+                            class="sc-oTNDV jzKNzB sc-qZtCU iAZVSD" width="48" height="48"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <g fill="none" stroke-width="3">
+                              <circle r="22" cx="50%" cy="50%" class="sc-pciEQ fVMzT"></circle>
+                              <circle class="sc-pjHjD eHqfSt coverageBar" stroke-dasharray="138.23007675795088 0"
+                                stroke-dashoffset="34.55751918948772" r="22" cx="50%" cy="50%"></circle>
+                            </g><text x="52%" y="58%" text-anchor="middle"
+                              class="sc-pscky dgkMkZ coverageText">1769%</text>
+                          </svg></div>
+                      </div>
+                      <div class="sc-pAyMl fkDqVf"><span class="sc-fzqARJ fTliZb"><button type="button"
+                            class="sc-fzqNqU bSpCFI" id="portfolio-expand-button" title="Развернуть"><span
+                              class="sc-fzoyTs jZUSDr"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" class="sc-AxgMl fePhHC">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M4 3H20C20.5523 3 21 3.44772 21 4V20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V4C3 3.44772 3.44772 3 4 3ZM7 14H5V19H10V17H7V14ZM14 7V5H19V10H17V7H14Z">
+                                </path>
+                              </svg></span></button></span><span class="sc-fzqARJ fTliZb sc-pITNg fLirGI"><button
+                            type="button" class="sc-fzqNqU bSpCFI" id="account-statistics-button"
+                            title="Показатели"><span class="sc-fzoyTs jZUSDr"><svg xmlns="http://www.w3.org/2000/svg"
+                                width="24" height="24" viewBox="0 0 24 24" class="sc-AxgMl fePhHC">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M12 8C13.1 8 14 7.1 14 6C14 4.9 13.1 4 12 4C10.9 4 10 4.9 10 6C10 7.1 10.9 8 12 8ZM12 10C10.9 10 10 10.9 10 12C10 13.1 10.9 14 12 14C13.1 14 14 13.1 14 12C14 10.9 13.1 10 12 10ZM12 16C10.9 16 10 16.9 10 18C10 19.1 10.9 20 12 20C13.1 20 14 19.1 14 18C14 16.9 13.1 16 12 16Z">
+                                </path>
+                              </svg></span></button></span></div>
+                    </div>
+                  </div>
+                  <div role="tablist" id="portfolio-tabs" class="sc-pKMan fdsIjn sc-pDbHj itSmt">
+                    <div class="sc-pTHAw ciWhmc"><button type="button" role="tab"
+                        class="sc-oVdHe eASEfC sc-pLwIe edWcep dense sizeMedium selected"
+                        value="positions">ПОРТФЕЛЬ</button><button type="button" role="tab"
+                        class="sc-oVdHe eASEfC sc-pLwIe edWcep dense sizeMedium" value="orders">ЗАЯВКИ</button><button
+                        type="button" role="tab" class="sc-oVdHe eASEfC sc-pLwIe edWcep dense sizeMedium"
+                        value="deals">СДЕЛКИ</button></div><span class="sc-qbDCV vjJlH"
+                      style="left: 0px; width: 114px;"></span>
+                  </div>
+                  <div class="sc-qWgaf eJRUKU">
+                    <div role="button" id="portfolio-close-button" class="sc-qPXtF geNBzd"><span title="Скрыть портфель"
+                        class="sc-qYsuA jDsubJ"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                          viewBox="0 0 24 24" class="sc-AxgMl fePhHC sc-pCPXO dbhMVG">
+                          <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M16.6 8.59998L12 13.2L7.4 8.59998L6 9.99998L12 16L18 9.99998L16.6 8.59998Z"></path>
+                        </svg></span></div>
+                  </div>
+                </header>
+                <div class="sc-oVpqz EeOKl">
+                  <div class="sc-oTaid fpeoAN" style="height: 280px; position: relative;">
+                    <div style="overflow: visible; height: 0px; width: 0px;">
+                      <div aria-colcount="10" aria-rowcount="5" class="ReactVirtualized__Table sc-qWQHW jDgWXp"
+                        role="grid">
+                        <div role="row" class="sc-qOvHb dprCAs ReactVirtualized__Table__headerRow row"
+                          style="height: 40px; overflow: hidden; padding-right: 0px; width: 588px;">
+                          <div aria-label="ticker" aria-sort="ascending"
+                            class="ReactVirtualized__Table__headerColumn alignLeft ReactVirtualized__Table__sortableHeaderColumn"
+                            role="columnheader" tabindex="0" style="flex: 1 1 100px;">
+                            <div data-column-id="ticker" title="Торговый код или наименование инструмента"
+                              class="sc-pIJmg ehCwJf"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" class="sc-AxgMl fePhHC sc-pZCuu dNQTLS">
+                                <path d="M7 14L12 9L17 14H7Z"></path>
+                              </svg>
+                              <p class="sc-fzoyAV xLNRp sc-pRFHb geEErt active colorSecondary">Инструмент</p>
+                            </div>
+                          </div>
+                          <div aria-label="quantity" aria-sort="none"
+                            class="ReactVirtualized__Table__headerColumn alignLeft ReactVirtualized__Table__sortableHeaderColumn"
+                            role="columnheader" tabindex="0" style="flex: 1 1 100px;">
+                            <div data-column-id="quantity" title="Текущий объем позиции в лотах"
+                              class="sc-pIJmg ehCwJf">
+                              <p class="sc-fzoyAV xLNRp sc-pRFHb geEErt colorSecondary">Позиция</p>
+                            </div>
+                          </div>
+                          <div aria-label="rate" aria-sort="none"
+                            class="ReactVirtualized__Table__headerColumn ReactVirtualized__Table__sortableHeaderColumn"
+                            role="columnheader" tabindex="0" style="flex: 1 1 100px;">
+                            <div data-column-id="rate" title="Текущая цена инструмета" class="sc-pIJmg ehCwJf">
+                              <p class="sc-fzoyAV xLNRp sc-pRFHb geEErt colorSecondary">Котировка</p>
+                            </div>
+                          </div>
+                          <div aria-label="equity" aria-sort="none"
+                            class="ReactVirtualized__Table__headerColumn ReactVirtualized__Table__sortableHeaderColumn"
+                            role="columnheader" tabindex="0" style="flex: 1 1 100px;">
+                            <div data-column-id="equity" title="Стоимость открытой позиции" class="sc-pIJmg ehCwJf">
+                              <p class="sc-fzoyAV xLNRp sc-pRFHb geEErt colorSecondary">Оценка</p>
+                            </div>
+                          </div>
+                          <div aria-label="maintReq" aria-sort="none"
+                            class="ReactVirtualized__Table__headerColumn ReactVirtualized__Table__sortableHeaderColumn"
+                            role="columnheader" tabindex="0" style="flex: 1 1 100px;">
+                            <div data-column-id="maintReq" title="Единая минимальная маржа" class="sc-pIJmg ehCwJf">
+                              <p class="sc-fzoyAV xLNRp sc-pRFHb geEErt colorSecondary">Маржа</p>
+                            </div>
+                          </div>
+                          <div aria-label="reqEquity" aria-sort="none"
+                            class="ReactVirtualized__Table__headerColumn ReactVirtualized__Table__sortableHeaderColumn"
+                            role="columnheader" tabindex="0" style="flex: 1 1 100px;">
+                            <div data-column-id="reqEquity" title="Нормативное обеспечение" class="sc-pIJmg ehCwJf">
+                              <p class="sc-fzoyAV xLNRp sc-pRFHb geEErt colorSecondary">Обеспечение</p>
+                            </div>
+                          </div>
+                          <div aria-label="posAvgPrice" aria-sort="none"
+                            class="ReactVirtualized__Table__headerColumn ReactVirtualized__Table__sortableHeaderColumn"
+                            role="columnheader" tabindex="0" style="flex: 1 1 100px;">
+                            <div data-column-id="posAvgPrice" title="Средняя цена приобретения позиции"
+                              class="sc-pIJmg ehCwJf">
+                              <p class="sc-fzoyAV xLNRp sc-pRFHb geEErt colorSecondary">Средняя</p>
+                            </div>
+                          </div>
+                          <div aria-label="PLDay" aria-sort="none"
+                            class="ReactVirtualized__Table__headerColumn ReactVirtualized__Table__sortableHeaderColumn"
+                            role="columnheader" tabindex="0" style="flex: 1 1 100px;">
+                            <div data-column-id="PLDay" title="Прибыль за текущий день" class="sc-pIJmg ehCwJf">
+                              <p class="sc-fzoyAV xLNRp sc-pRFHb geEErt colorSecondary">Прибыль, день</p>
+                            </div>
+                          </div>
+                          <div aria-label="unrealizedPnl" aria-sort="none"
+                            class="ReactVirtualized__Table__headerColumn ReactVirtualized__Table__sortableHeaderColumn"
+                            role="columnheader" tabindex="0" style="flex: 1 1 100px;">
+                            <div data-column-id="unrealizedPnl" title="Нереализованная прибыль текущей позиции
+относительно средней цены приобретения" class="sc-pIJmg ehCwJf">
+                              <p class="sc-fzoyAV xLNRp sc-pRFHb geEErt colorSecondary">Прибыль</p>
+                            </div>
+                          </div>
+                          <div aria-label="action" aria-sort="none"
+                            class="ReactVirtualized__Table__headerColumn ReactVirtualized__Table__sortableHeaderColumn"
+                            role="columnheader" tabindex="0" style="flex: 0 0 58px;">
+                            <div class="sc-pIJmg ehCwJf"><span class="sc-fzqARJ fTliZb"><button type="button"
+                                  class="sc-fzqNqU bSpCFI" data-test="toggleTableFilter"><span
+                                    class="sc-fzoyTs jZUSDr"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                      height="24" viewBox="0 0 24 24" class="sc-AxgMl fePhHC">
+                                      <path d="M17 9H15V3H17V5H21V7H17V9Z"></path>
+                                      <path d="M3 7V5H13V7H3Z"></path>
+                                      <path d="M3 19V17H9V19H3Z"></path>
+                                      <path d="M13 21V19H21V17H13V15H11V21H13Z"></path>
+                                      <path d="M7 11V9H9V15H7V13H3V11H7Z"></path>
+                                      <path d="M21 13V11H11V13H21Z"></path>
+                                    </svg></span></button></span></div>
+                          </div>
+                        </div>
+                        <div aria-label="grid" class="ReactVirtualized__Grid ReactVirtualized__Table__Grid grid"
+                          role="rowgroup" tabindex="0"
+                          style="box-sizing: border-box; direction: ltr; height: 240px; position: relative; width: 588px; will-change: transform; overflow: hidden;">
+                          <div class="ReactVirtualized__Grid__innerScrollContainer" role="rowgroup"
+                            style="width: auto; height: 240px; max-width: 588px; max-height: 240px; overflow: hidden; position: relative;">
+                            <div aria-rowindex="1" aria-label="row" tabindex="0"
+                              class="ReactVirtualized__Table__row row" role="row"
+                              style="height: 48px; left: 0px; position: absolute; top: 0px; width: 588px; overflow: hidden; padding-right: 0px;">
+                              <div aria-colindex="1" class="ReactVirtualized__Table__rowColumn alignLeft"
+                                role="gridcell" style="overflow: hidden; flex: 1 1 100px;">
+                                <p class="sc-fzoyAV xLNRp" title="ГМКНорНик">GMKN</p>
+                              </div>
+                              <div aria-colindex="2" class="ReactVirtualized__Table__rowColumn alignLeft"
+                                role="gridcell" style="overflow: hidden; flex: 1 1 100px;">
+                                <div class="sc-pRtcU iqDVFC">
+                                  <div data-test="quantity" class="sc-pJipy mZVAk filled">
+                                    <div class="sc-qapxP jnVPKq sc-prrfo ekpKSa"><svg xmlns="http://www.w3.org/2000/svg"
+                                        width="7" height="20" viewBox="0 0 7 20"
+                                        class="sc-AxgMl fePhHC sc-oTmHo fcqzIr">
+                                        <path
+                                          d="M0 6.36364C0 4.67156 0 3.82553 0.244717 3.14083C0.739307 1.75702 1.93273 0.672097 3.45492 0.22247C4.20808 0 5.13872 0 7 0V20C5.13872 20 4.20808 20 3.45492 19.7775C1.93273 19.3279 0.739307 18.243 0.244717 16.8592C0 16.1745 0 15.3284 0 13.6364V6.36364Z">
+                                        </path>
+                                      </svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="20"
+                                        viewBox="0 0 32 20" class="sc-AxgMl fePhHC sc-pbJYR gsdIuB"
+                                        preserveAspectRatio="none">
+                                        <rect width="32" height="20"></rect>
+                                      </svg><svg xmlns="http://www.w3.org/2000/svg" width="7" height="20"
+                                        viewBox="0 0 7 20" class="sc-AxgMl fePhHC sc-pkfPC iDckyw">
+                                        <path
+                                          d="M5.30808 3.99731C5.07892 3.24003 4.96434 2.86139 4.80938 2.53971C4.17077 1.21398 2.94083 0.287764 1.51148 0.0561902C1.16466 0 0.776438 0 0 0V20C0.776438 20 1.16466 20 1.51148 19.9438C2.94083 19.7122 4.17077 18.786 4.80938 17.4603C4.96434 17.1386 5.07892 16.76 5.30808 16.0027L6.73483 11.2879C6.87964 10.8094 6.95205 10.5701 6.98084 10.3261C7.00639 10.1095 7.00639 9.89053 6.98084 9.67394C6.95205 9.42991 6.87964 9.19064 6.73483 8.7121L5.30808 3.99731Z">
+                                        </path>
+                                      </svg></div>
+                                    <div title="Long 3" class="sc-pRgDJ igyElM"><svg xmlns="http://www.w3.org/2000/svg"
+                                        width="24" height="24" viewBox="0 0 24 24"
+                                        class="sc-AxgMl fePhHC sc-pZdvY dnEueC">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                          d="M11.1552 9.51576C11.622 8.82953 12.3769 8.82664 12.8458 9.51576L15.2939 13.1138C15.7284 13.7523 15.4539 14.27 14.6779 14.27H9.32382C8.54916 14.27 8.26896 13.7587 8.70768 13.1138L11.1552 9.51576Z">
+                                        </path>
+                                      </svg>
+                                      <p class="sc-fzoyAV xLNRp sc-pjumZ gUhPC">3</p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div aria-colindex="3" class="ReactVirtualized__Table__rowColumn" role="gridcell"
+                                style="overflow: hidden; flex: 1 1 100px;">
+                                <p class="sc-fzoyAV xLNRp" title="RUB&nbsp;22,154 0.64%">RUB&nbsp;22,154<span
+                                    class="sc-pZQux fmmSyz">&nbsp;&nbsp;0.64%</span></p>
+                              </div>
+                              <div aria-colindex="4" class="ReactVirtualized__Table__rowColumn" role="gridcell"
+                                style="overflow: hidden; flex: 1 1 100px;">
+                                <p class="sc-fzoyAV xLNRp sc-paWVw xAozN" title="66462.00000000001">66,462.00</p>
+                              </div>
+                              <div aria-colindex="5" class="ReactVirtualized__Table__rowColumn" role="gridcell"
+                                style="overflow: hidden; flex: 1 1 100px;">
+                                <p class="sc-fzoyAV xLNRp sc-paWVw xAozN" title="7975.4400000000005">7,975.44</p>
+                              </div>
+                              <div aria-colindex="6" class="ReactVirtualized__Table__rowColumn" role="gridcell"
+                                style="overflow: hidden; flex: 1 1 100px;">
+                                <p class="sc-fzoyAV xLNRp sc-paWVw xAozN" title="66462">66,462.00</p>
+                              </div>
+                              <div aria-colindex="7" class="ReactVirtualized__Table__rowColumn" role="gridcell"
+                                style="overflow: hidden; flex: 1 1 100px;">
+                                <p class="sc-fzoyAV xLNRp sc-paWVw xAozN" title="0">0</p>
+                              </div>
+                              <div aria-colindex="8" class="ReactVirtualized__Table__rowColumn" role="gridcell"
+                                style="overflow: hidden; flex: 1 1 100px;">
+                                <p class="sc-fzoyAV xLNRp sc-pRSgm bpVYvW" title="384.00">384.00</p>
+                              </div>
+                              <div aria-colindex="9" class="ReactVirtualized__Table__rowColumn" role="gridcell"
+                                style="overflow: hidden; flex: 1 1 100px;">
+                                <p class="sc-fzoyAV xLNRp sc-pRSgm bpVYvW" title="0.00">0.00</p>
+                              </div>
+                              <div aria-colindex="10" class="ReactVirtualized__Table__rowColumn action" role="gridcell"
+                                style="overflow: hidden; flex: 0 0 58px;">
+                                <div data-row-id="GMKN" class="sc-pjTqr jJFvBj"><span
+                                    class="sc-fzqARJ fTliZb sc-prQdK inVUC"><button type="button"
+                                      class="sc-fzqNqU bSpCFI" data-test="actionClose"><span
+                                        class="sc-fzoyTs jZUSDr"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                          height="24" viewBox="0 0 24 24" class="sc-AxgMl fePhHC">
+                                          <path
+                                            d="M6 19C6 20.1 6.9 21 8 21H16C17.1 21 18 20.1 18 19V7H6V19ZM19 4H15.5L14.5 3H9.5L8.5 4H5V6H19V4Z">
+                                          </path>
+                                        </svg></span></button></span><span
+                                    class="sc-fzqARJ fTliZb sc-qQlgh dnZKXh"><button type="button"
+                                      class="sc-fzqNqU bSpCFI" data-test="actionMore"><span
+                                        class="sc-fzoyTs jZUSDr"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                          height="24" viewBox="0 0 24 24" class="sc-AxgMl fePhHC">
+                                          <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M12 8C13.1 8 14 7.1 14 6C14 4.9 13.1 4 12 4C10.9 4 10 4.9 10 6C10 7.1 10.9 8 12 8ZM12 10C10.9 10 10 10.9 10 12C10 13.1 10.9 14 12 14C13.1 14 14 13.1 14 12C14 10.9 13.1 10 12 10ZM12 16C10.9 16 10 16.9 10 18C10 19.1 10.9 20 12 20C13.1 20 14 19.1 14 18C14 16.9 13.1 16 12 16Z">
+                                          </path>
+                                        </svg></span></button></span></div>
+                              </div>
+                            </div>
+                            <div aria-rowindex="2" aria-label="row" tabindex="0"
+                              class="ReactVirtualized__Table__row row" role="row"
+                              style="height: 48px; left: 0px; position: absolute; top: 48px; width: 588px; overflow: hidden; padding-right: 0px;">
+                              <div aria-colindex="1" class="ReactVirtualized__Table__rowColumn alignLeft"
+                                role="gridcell" style="overflow: hidden; flex: 1 1 100px;">
+                                <p class="sc-fzoyAV xLNRp">Roubles CE</p>
+                              </div>
+                              <div aria-colindex="2" class="ReactVirtualized__Table__rowColumn alignLeft"
+                                role="gridcell" style="overflow: hidden; flex: 1 1 100px;">
+                                <div class="sc-pRtcU iqDVFC">
+                                  <div data-test="quantity" class="sc-pJipy mZVAk filled">
+                                    <div class="sc-qapxP jnVPKq sc-prrfo ekpKSa"><svg xmlns="http://www.w3.org/2000/svg"
+                                        width="7" height="20" viewBox="0 0 7 20"
+                                        class="sc-AxgMl fePhHC sc-oTmHo fcqzIr">
+                                        <path
+                                          d="M0 6.36364C0 4.67156 0 3.82553 0.244717 3.14083C0.739307 1.75702 1.93273 0.672097 3.45492 0.22247C4.20808 0 5.13872 0 7 0V20C5.13872 20 4.20808 20 3.45492 19.7775C1.93273 19.3279 0.739307 18.243 0.244717 16.8592C0 16.1745 0 15.3284 0 13.6364V6.36364Z">
+                                        </path>
+                                      </svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="20"
+                                        viewBox="0 0 32 20" class="sc-AxgMl fePhHC sc-pbJYR gsdIuB"
+                                        preserveAspectRatio="none">
+                                        <rect width="32" height="20"></rect>
+                                      </svg><svg xmlns="http://www.w3.org/2000/svg" width="7" height="20"
+                                        viewBox="0 0 7 20" class="sc-AxgMl fePhHC sc-pkfPC iDckyw">
+                                        <path
+                                          d="M5.30808 3.99731C5.07892 3.24003 4.96434 2.86139 4.80938 2.53971C4.17077 1.21398 2.94083 0.287764 1.51148 0.0561902C1.16466 0 0.776438 0 0 0V20C0.776438 20 1.16466 20 1.51148 19.9438C2.94083 19.7122 4.17077 18.786 4.80938 17.4603C4.96434 17.1386 5.07892 16.76 5.30808 16.0027L6.73483 11.2879C6.87964 10.8094 6.95205 10.5701 6.98084 10.3261C7.00639 10.1095 7.00639 9.89053 6.98084 9.67394C6.95205 9.42991 6.87964 9.19064 6.73483 8.7121L5.30808 3.99731Z">
+                                        </path>
+                                      </svg></div>
+                                    <div title="Long 305,553.28" class="sc-pRgDJ igyElM"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        class="sc-AxgMl fePhHC sc-pZdvY dnEueC">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                          d="M11.1552 9.51576C11.622 8.82953 12.3769 8.82664 12.8458 9.51576L15.2939 13.1138C15.7284 13.7523 15.4539 14.27 14.6779 14.27H9.32382C8.54916 14.27 8.26896 13.7587 8.70768 13.1138L11.1552 9.51576Z">
+                                        </path>
+                                      </svg>
+                                      <p class="sc-fzoyAV xLNRp sc-pjumZ gUhPC">305,553.28</p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div aria-colindex="3" class="ReactVirtualized__Table__rowColumn" role="gridcell"
+                                style="overflow: hidden; flex: 1 1 100px;">
+                                <p class="sc-fzoyAV xLNRp" title=" "></p>
+                              </div>
+                              <div aria-colindex="4" class="ReactVirtualized__Table__rowColumn" role="gridcell"
+                                style="overflow: hidden; flex: 1 1 100px;">
+                                <p class="sc-fzoyAV xLNRp sc-paWVw xAozN" title="305553.28">305,553.28</p>
+                              </div>
+                              <div aria-colindex="5" class="ReactVirtualized__Table__rowColumn" role="gridcell"
+                                style="overflow: hidden; flex: 1 1 100px;">
+                                <p class="sc-fzoyAV xLNRp sc-paWVw xAozN"></p>
+                              </div>
+                              <div aria-colindex="6" class="ReactVirtualized__Table__rowColumn" role="gridcell"
+                                style="overflow: hidden; flex: 1 1 100px;">
+                                <p class="sc-fzoyAV xLNRp sc-paWVw xAozN"></p>
+                              </div>
+                              <div aria-colindex="7" class="ReactVirtualized__Table__rowColumn" role="gridcell"
+                                style="overflow: hidden; flex: 1 1 100px;">
+                                <p class="sc-fzoyAV xLNRp sc-paWVw xAozN"></p>
+                              </div>
+                              <div aria-colindex="8" class="ReactVirtualized__Table__rowColumn" role="gridcell"
+                                style="overflow: hidden; flex: 1 1 100px;"></div>
+                              <div aria-colindex="9" class="ReactVirtualized__Table__rowColumn" role="gridcell"
+                                style="overflow: hidden; flex: 1 1 100px;"></div>
+                              <div aria-colindex="10" class="ReactVirtualized__Table__rowColumn action" role="gridcell"
+                                style="overflow: hidden; flex: 0 0 58px;"></div>
+                            </div>
+                            <div aria-rowindex="3" aria-label="row" tabindex="0"
+                              class="ReactVirtualized__Table__row row" role="row"
+                              style="height: 48px; left: 0px; position: absolute; top: 96px; width: 588px; overflow: hidden; padding-right: 0px;">
+                              <div aria-colindex="1" class="ReactVirtualized__Table__rowColumn alignLeft"
+                                role="gridcell" style="overflow: hidden; flex: 1 1 100px;">
+                                <p class="sc-fzoyAV xLNRp" title="Сбербанк">SBER</p>
+                              </div>
+                              <div aria-colindex="2" class="ReactVirtualized__Table__rowColumn alignLeft"
+                                role="gridcell" style="overflow: hidden; flex: 1 1 100px;">
+                                <div class="sc-pRtcU iqDVFC">
+                                  <div data-test="quantity" class="sc-pJipy mZVAk filled">
+                                    <div class="sc-qapxP jnVPKq sc-prrfo ekpKSa"><svg xmlns="http://www.w3.org/2000/svg"
+                                        width="7" height="20" viewBox="0 0 7 20"
+                                        class="sc-AxgMl fePhHC sc-oTmHo fcqzIr">
+                                        <path
+                                          d="M0 6.36364C0 4.67156 0 3.82553 0.244717 3.14083C0.739307 1.75702 1.93273 0.672097 3.45492 0.22247C4.20808 0 5.13872 0 7 0V20C5.13872 20 4.20808 20 3.45492 19.7775C1.93273 19.3279 0.739307 18.243 0.244717 16.8592C0 16.1745 0 15.3284 0 13.6364V6.36364Z">
+                                        </path>
+                                      </svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="20"
+                                        viewBox="0 0 32 20" class="sc-AxgMl fePhHC sc-pbJYR gsdIuB"
+                                        preserveAspectRatio="none">
+                                        <rect width="32" height="20"></rect>
+                                      </svg><svg xmlns="http://www.w3.org/2000/svg" width="7" height="20"
+                                        viewBox="0 0 7 20" class="sc-AxgMl fePhHC sc-pkfPC iDckyw">
+                                        <path
+                                          d="M5.30808 3.99731C5.07892 3.24003 4.96434 2.86139 4.80938 2.53971C4.17077 1.21398 2.94083 0.287764 1.51148 0.0561902C1.16466 0 0.776438 0 0 0V20C0.776438 20 1.16466 20 1.51148 19.9438C2.94083 19.7122 4.17077 18.786 4.80938 17.4603C4.96434 17.1386 5.07892 16.76 5.30808 16.0027L6.73483 11.2879C6.87964 10.8094 6.95205 10.5701 6.98084 10.3261C7.00639 10.1095 7.00639 9.89053 6.98084 9.67394C6.95205 9.42991 6.87964 9.19064 6.73483 8.7121L5.30808 3.99731Z">
+                                        </path>
+                                      </svg></div>
+                                    <div title="Long 4" class="sc-pRgDJ igyElM"><svg xmlns="http://www.w3.org/2000/svg"
+                                        width="24" height="24" viewBox="0 0 24 24"
+                                        class="sc-AxgMl fePhHC sc-pZdvY dnEueC">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                          d="M11.1552 9.51576C11.622 8.82953 12.3769 8.82664 12.8458 9.51576L15.2939 13.1138C15.7284 13.7523 15.4539 14.27 14.6779 14.27H9.32382C8.54916 14.27 8.26896 13.7587 8.70768 13.1138L11.1552 9.51576Z">
+                                        </path>
+                                      </svg>
+                                      <p class="sc-fzoyAV xLNRp sc-pjumZ gUhPC">4</p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div aria-colindex="3" class="ReactVirtualized__Table__rowColumn" role="gridcell"
+                                style="overflow: hidden; flex: 1 1 100px;">
+                                <p class="sc-fzoyAV xLNRp" title="RUB&nbsp;206.92 1.62%">RUB&nbsp;206.92<span
+                                    class="sc-pZQux fmmSyz">&nbsp;&nbsp;1.62%</span></p>
+                              </div>
+                              <div aria-colindex="4" class="ReactVirtualized__Table__rowColumn" role="gridcell"
+                                style="overflow: hidden; flex: 1 1 100px;">
+                                <p class="sc-fzoyAV xLNRp sc-paWVw xAozN" title="8276.800000000001">8,276.80</p>
+                              </div>
+                              <div aria-colindex="5" class="ReactVirtualized__Table__rowColumn" role="gridcell"
+                                style="overflow: hidden; flex: 1 1 100px;">
+                                <p class="sc-fzoyAV xLNRp sc-paWVw xAozN" title="993.22">993.22</p>
+                              </div>
+                              <div aria-colindex="6" class="ReactVirtualized__Table__rowColumn" role="gridcell"
+                                style="overflow: hidden; flex: 1 1 100px;">
+                                <p class="sc-fzoyAV xLNRp sc-paWVw xAozN" title="8276.8">8,276.80</p>
+                              </div>
+                              <div aria-colindex="7" class="ReactVirtualized__Table__rowColumn" role="gridcell"
+                                style="overflow: hidden; flex: 1 1 100px;">
+                                <p class="sc-fzoyAV xLNRp sc-paWVw xAozN" title="0">0.00</p>
+                              </div>
+                              <div aria-colindex="8" class="ReactVirtualized__Table__rowColumn" role="gridcell"
+                                style="overflow: hidden; flex: 1 1 100px;">
+                                <p class="sc-fzoyAV xLNRp sc-pRSgm bpVYvW" title="130.40">130.40</p>
+                              </div>
+                              <div aria-colindex="9" class="ReactVirtualized__Table__rowColumn" role="gridcell"
+                                style="overflow: hidden; flex: 1 1 100px;">
+                                <p class="sc-fzoyAV xLNRp sc-pRSgm bpVYvW" title="0.00">0.00</p>
+                              </div>
+                              <div aria-colindex="10" class="ReactVirtualized__Table__rowColumn action" role="gridcell"
+                                style="overflow: hidden; flex: 0 0 58px;">
+                                <div data-row-id="SBER" class="sc-pjTqr jJFvBj"><span
+                                    class="sc-fzqARJ fTliZb sc-prQdK inVUC"><button type="button"
+                                      class="sc-fzqNqU bSpCFI" data-test="actionClose"><span
+                                        class="sc-fzoyTs jZUSDr"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                          height="24" viewBox="0 0 24 24" class="sc-AxgMl fePhHC">
+                                          <path
+                                            d="M6 19C6 20.1 6.9 21 8 21H16C17.1 21 18 20.1 18 19V7H6V19ZM19 4H15.5L14.5 3H9.5L8.5 4H5V6H19V4Z">
+                                          </path>
+                                        </svg></span></button></span><span
+                                    class="sc-fzqARJ fTliZb sc-qQlgh dnZKXh"><button type="button"
+                                      class="sc-fzqNqU bSpCFI" data-test="actionMore"><span
+                                        class="sc-fzoyTs jZUSDr"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                          height="24" viewBox="0 0 24 24" class="sc-AxgMl fePhHC">
+                                          <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M12 8C13.1 8 14 7.1 14 6C14 4.9 13.1 4 12 4C10.9 4 10 4.9 10 6C10 7.1 10.9 8 12 8ZM12 10C10.9 10 10 10.9 10 12C10 13.1 10.9 14 12 14C13.1 14 14 13.1 14 12C14 10.9 13.1 10 12 10ZM12 16C10.9 16 10 16.9 10 18C10 19.1 10.9 20 12 20C13.1 20 14 19.1 14 18C14 16.9 13.1 16 12 16Z">
+                                          </path>
+                                        </svg></span></button></span></div>
+                              </div>
+                            </div>
+                            <div aria-rowindex="4" aria-label="row" tabindex="0"
+                              class="ReactVirtualized__Table__row row" role="row"
+                              style="height: 48px; left: 0px; position: absolute; top: 144px; width: 588px; overflow: hidden; padding-right: 0px;">
+                              <div aria-colindex="1" class="ReactVirtualized__Table__rowColumn alignLeft"
+                                role="gridcell" style="overflow: hidden; flex: 1 1 100px;">
+                                <p class="sc-fzoyAV xLNRp" title="Татнфт 3ао">TATN</p>
+                              </div>
+                              <div aria-colindex="2" class="ReactVirtualized__Table__rowColumn alignLeft"
+                                role="gridcell" style="overflow: hidden; flex: 1 1 100px;">
+                                <div class="sc-pRtcU iqDVFC">
+                                  <div data-test="quantity" class="sc-pJipy mZVAk filled">
+                                    <div class="sc-qapxP jnVPKq sc-prrfo ekpKSa"><svg xmlns="http://www.w3.org/2000/svg"
+                                        width="7" height="20" viewBox="0 0 7 20"
+                                        class="sc-AxgMl fePhHC sc-oTmHo fcqzIr">
+                                        <path
+                                          d="M0 6.36364C0 4.67156 0 3.82553 0.244717 3.14083C0.739307 1.75702 1.93273 0.672097 3.45492 0.22247C4.20808 0 5.13872 0 7 0V20C5.13872 20 4.20808 20 3.45492 19.7775C1.93273 19.3279 0.739307 18.243 0.244717 16.8592C0 16.1745 0 15.3284 0 13.6364V6.36364Z">
+                                        </path>
+                                      </svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="20"
+                                        viewBox="0 0 32 20" class="sc-AxgMl fePhHC sc-pbJYR gsdIuB"
+                                        preserveAspectRatio="none">
+                                        <rect width="32" height="20"></rect>
+                                      </svg><svg xmlns="http://www.w3.org/2000/svg" width="7" height="20"
+                                        viewBox="0 0 7 20" class="sc-AxgMl fePhHC sc-pkfPC iDckyw">
+                                        <path
+                                          d="M5.30808 3.99731C5.07892 3.24003 4.96434 2.86139 4.80938 2.53971C4.17077 1.21398 2.94083 0.287764 1.51148 0.0561902C1.16466 0 0.776438 0 0 0V20C0.776438 20 1.16466 20 1.51148 19.9438C2.94083 19.7122 4.17077 18.786 4.80938 17.4603C4.96434 17.1386 5.07892 16.76 5.30808 16.0027L6.73483 11.2879C6.87964 10.8094 6.95205 10.5701 6.98084 10.3261C7.00639 10.1095 7.00639 9.89053 6.98084 9.67394C6.95205 9.42991 6.87964 9.19064 6.73483 8.7121L5.30808 3.99731Z">
+                                        </path>
+                                      </svg></div>
+                                    <div title="Long 10" class="sc-pRgDJ igyElM"><svg xmlns="http://www.w3.org/2000/svg"
+                                        width="24" height="24" viewBox="0 0 24 24"
+                                        class="sc-AxgMl fePhHC sc-pZdvY dnEueC">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                          d="M11.1552 9.51576C11.622 8.82953 12.3769 8.82664 12.8458 9.51576L15.2939 13.1138C15.7284 13.7523 15.4539 14.27 14.6779 14.27H9.32382C8.54916 14.27 8.26896 13.7587 8.70768 13.1138L11.1552 9.51576Z">
+                                        </path>
+                                      </svg>
+                                      <p class="sc-fzoyAV xLNRp sc-pjumZ gUhPC">10</p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div aria-colindex="3" class="ReactVirtualized__Table__rowColumn" role="gridcell"
+                                style="overflow: hidden; flex: 1 1 100px;">
+                                <p class="sc-fzoyAV xLNRp" title="RUB&nbsp;557.8 2.91%">RUB&nbsp;557.8<span
+                                    class="sc-pZQux fmmSyz">&nbsp;&nbsp;2.91%</span></p>
+                              </div>
+                              <div aria-colindex="4" class="ReactVirtualized__Table__rowColumn" role="gridcell"
+                                style="overflow: hidden; flex: 1 1 100px;">
+                                <p class="sc-fzoyAV xLNRp sc-paWVw xAozN" title="5578.000000000001">5,578.00</p>
+                              </div>
+                              <div aria-colindex="5" class="ReactVirtualized__Table__rowColumn" role="gridcell"
+                                style="overflow: hidden; flex: 1 1 100px;">
+                                <p class="sc-fzoyAV xLNRp sc-paWVw xAozN" title="780.9200000000001">780.92</p>
+                              </div>
+                              <div aria-colindex="6" class="ReactVirtualized__Table__rowColumn" role="gridcell"
+                                style="overflow: hidden; flex: 1 1 100px;">
+                                <p class="sc-fzoyAV xLNRp sc-paWVw xAozN" title="5578">5,578.00</p>
+                              </div>
+                              <div aria-colindex="7" class="ReactVirtualized__Table__rowColumn" role="gridcell"
+                                style="overflow: hidden; flex: 1 1 100px;">
+                                <p class="sc-fzoyAV xLNRp sc-paWVw xAozN" title="0">0.0</p>
+                              </div>
+                              <div aria-colindex="8" class="ReactVirtualized__Table__rowColumn" role="gridcell"
+                                style="overflow: hidden; flex: 1 1 100px;">
+                                <p class="sc-fzoyAV xLNRp sc-pRSgm bpVYvW" title="153.00">153.00</p>
+                              </div>
+                              <div aria-colindex="9" class="ReactVirtualized__Table__rowColumn" role="gridcell"
+                                style="overflow: hidden; flex: 1 1 100px;">
+                                <p class="sc-fzoyAV xLNRp sc-pRSgm bpVYvW" title="0.00">0.00</p>
+                              </div>
+                              <div aria-colindex="10" class="ReactVirtualized__Table__rowColumn action" role="gridcell"
+                                style="overflow: hidden; flex: 0 0 58px;">
+                                <div data-row-id="TATN" class="sc-pjTqr jJFvBj"><span
+                                    class="sc-fzqARJ fTliZb sc-prQdK inVUC"><button type="button"
+                                      class="sc-fzqNqU bSpCFI" data-test="actionClose"><span
+                                        class="sc-fzoyTs jZUSDr"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                          height="24" viewBox="0 0 24 24" class="sc-AxgMl fePhHC">
+                                          <path
+                                            d="M6 19C6 20.1 6.9 21 8 21H16C17.1 21 18 20.1 18 19V7H6V19ZM19 4H15.5L14.5 3H9.5L8.5 4H5V6H19V4Z">
+                                          </path>
+                                        </svg></span></button></span><span
+                                    class="sc-fzqARJ fTliZb sc-qQlgh dnZKXh"><button type="button"
+                                      class="sc-fzqNqU bSpCFI" data-test="actionMore"><span
+                                        class="sc-fzoyTs jZUSDr"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                          height="24" viewBox="0 0 24 24" class="sc-AxgMl fePhHC">
+                                          <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M12 8C13.1 8 14 7.1 14 6C14 4.9 13.1 4 12 4C10.9 4 10 4.9 10 6C10 7.1 10.9 8 12 8ZM12 10C10.9 10 10 10.9 10 12C10 13.1 10.9 14 12 14C13.1 14 14 13.1 14 12C14 10.9 13.1 10 12 10ZM12 16C10.9 16 10 16.9 10 18C10 19.1 10.9 20 12 20C13.1 20 14 19.1 14 18C14 16.9 13.1 16 12 16Z">
+                                          </path>
+                                        </svg></span></button></span></div>
+                              </div>
+                            </div>
+                            <div aria-rowindex="5" aria-label="row" tabindex="0"
+                              class="ReactVirtualized__Table__row row" role="row"
+                              style="height: 48px; left: 0px; position: absolute; top: 192px; width: 588px; overflow: hidden; padding-right: 0px;">
+                              <div aria-colindex="1" class="ReactVirtualized__Table__rowColumn alignLeft"
+                                role="gridcell" style="overflow: hidden; flex: 1 1 100px;">
+                                <p class="sc-fzoyAV xLNRp" title="Yandex clA">YNDX</p>
+                              </div>
+                              <div aria-colindex="2" class="ReactVirtualized__Table__rowColumn alignLeft"
+                                role="gridcell" style="overflow: hidden; flex: 1 1 100px;">
+                                <div class="sc-pRtcU iqDVFC">
+                                  <div data-test="quantity" class="sc-pJipy mZVAk filled">
+                                    <div class="sc-qapxP jnVPKq sc-prrfo ekpKSa"><svg xmlns="http://www.w3.org/2000/svg"
+                                        width="7" height="20" viewBox="0 0 7 20"
+                                        class="sc-AxgMl fePhHC sc-oTmHo fcqzIr">
+                                        <path
+                                          d="M0 6.36364C0 4.67156 0 3.82553 0.244717 3.14083C0.739307 1.75702 1.93273 0.672097 3.45492 0.22247C4.20808 0 5.13872 0 7 0V20C5.13872 20 4.20808 20 3.45492 19.7775C1.93273 19.3279 0.739307 18.243 0.244717 16.8592C0 16.1745 0 15.3284 0 13.6364V6.36364Z">
+                                        </path>
+                                      </svg><svg xmlns="http://www.w3.org/2000/svg" width="32" height="20"
+                                        viewBox="0 0 32 20" class="sc-AxgMl fePhHC sc-pbJYR gsdIuB"
+                                        preserveAspectRatio="none">
+                                        <rect width="32" height="20"></rect>
+                                      </svg><svg xmlns="http://www.w3.org/2000/svg" width="7" height="20"
+                                        viewBox="0 0 7 20" class="sc-AxgMl fePhHC sc-pkfPC iDckyw">
+                                        <path
+                                          d="M5.30808 3.99731C5.07892 3.24003 4.96434 2.86139 4.80938 2.53971C4.17077 1.21398 2.94083 0.287764 1.51148 0.0561902C1.16466 0 0.776438 0 0 0V20C0.776438 20 1.16466 20 1.51148 19.9438C2.94083 19.7122 4.17077 18.786 4.80938 17.4603C4.96434 17.1386 5.07892 16.76 5.30808 16.0027L6.73483 11.2879C6.87964 10.8094 6.95205 10.5701 6.98084 10.3261C7.00639 10.1095 7.00639 9.89053 6.98084 9.67394C6.95205 9.42991 6.87964 9.19064 6.73483 8.7121L5.30808 3.99731Z">
+                                        </path>
+                                      </svg></div>
+                                    <div title="Long 5" class="sc-pRgDJ igyElM"><svg xmlns="http://www.w3.org/2000/svg"
+                                        width="24" height="24" viewBox="0 0 24 24"
+                                        class="sc-AxgMl fePhHC sc-pZdvY dnEueC">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                          d="M11.1552 9.51576C11.622 8.82953 12.3769 8.82664 12.8458 9.51576L15.2939 13.1138C15.7284 13.7523 15.4539 14.27 14.6779 14.27H9.32382C8.54916 14.27 8.26896 13.7587 8.70768 13.1138L11.1552 9.51576Z">
+                                        </path>
+                                      </svg>
+                                      <p class="sc-fzoyAV xLNRp sc-pjumZ gUhPC">5</p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div aria-colindex="3" class="ReactVirtualized__Table__rowColumn" role="gridcell"
+                                style="overflow: hidden; flex: 1 1 100px;">
+                                <p class="sc-fzoyAV xLNRp" title="RUB&nbsp;2,868.8 0.77%">RUB&nbsp;2,868.8<span
+                                    class="sc-pZQux fmmSyz">&nbsp;&nbsp;0.77%</span></p>
+                              </div>
+                              <div aria-colindex="4" class="ReactVirtualized__Table__rowColumn" role="gridcell"
+                                style="overflow: hidden; flex: 1 1 100px;">
+                                <p class="sc-fzoyAV xLNRp sc-paWVw xAozN" title="14344.000000000004">14,344.00</p>
+                              </div>
+                              <div aria-colindex="5" class="ReactVirtualized__Table__rowColumn" role="gridcell"
+                                style="overflow: hidden; flex: 1 1 100px;">
+                                <p class="sc-fzoyAV xLNRp sc-paWVw xAozN" title="3586">3,586.00</p>
+                              </div>
+                              <div aria-colindex="6" class="ReactVirtualized__Table__rowColumn" role="gridcell"
+                                style="overflow: hidden; flex: 1 1 100px;">
+                                <p class="sc-fzoyAV xLNRp sc-paWVw xAozN" title="0">0.00</p>
+                              </div>
+                              <div aria-colindex="7" class="ReactVirtualized__Table__rowColumn" role="gridcell"
+                                style="overflow: hidden; flex: 1 1 100px;">
+                                <p class="sc-fzoyAV xLNRp sc-paWVw xAozN" title="0">0.0</p>
+                              </div>
+                              <div aria-colindex="8" class="ReactVirtualized__Table__rowColumn" role="gridcell"
+                                style="overflow: hidden; flex: 1 1 100px;">
+                                <p class="sc-fzoyAV xLNRp sc-pRSgm bpVYvW" title="114.00">114.00</p>
+                              </div>
+                              <div aria-colindex="9" class="ReactVirtualized__Table__rowColumn" role="gridcell"
+                                style="overflow: hidden; flex: 1 1 100px;">
+                                <p class="sc-fzoyAV xLNRp sc-pRSgm bpVYvW" title="0.00">0.00</p>
+                              </div>
+                              <div aria-colindex="10" class="ReactVirtualized__Table__rowColumn action" role="gridcell"
+                                style="overflow: hidden; flex: 0 0 58px;">
+                                <div data-row-id="YNDX" class="sc-pjTqr jJFvBj"><span
+                                    class="sc-fzqARJ fTliZb sc-prQdK inVUC"><button type="button"
+                                      class="sc-fzqNqU bSpCFI" data-test="actionClose"><span
+                                        class="sc-fzoyTs jZUSDr"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                          height="24" viewBox="0 0 24 24" class="sc-AxgMl fePhHC">
+                                          <path
+                                            d="M6 19C6 20.1 6.9 21 8 21H16C17.1 21 18 20.1 18 19V7H6V19ZM19 4H15.5L14.5 3H9.5L8.5 4H5V6H19V4Z">
+                                          </path>
+                                        </svg></span></button></span><span
+                                    class="sc-fzqARJ fTliZb sc-qQlgh dnZKXh"><button type="button"
+                                      class="sc-fzqNqU bSpCFI" data-test="actionMore"><span
+                                        class="sc-fzoyTs jZUSDr"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                          height="24" viewBox="0 0 24 24" class="sc-AxgMl fePhHC">
+                                          <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M12 8C13.1 8 14 7.1 14 6C14 4.9 13.1 4 12 4C10.9 4 10 4.9 10 6C10 7.1 10.9 8 12 8ZM12 10C10.9 10 10 10.9 10 12C10 13.1 10.9 14 12 14C13.1 14 14 13.1 14 12C14 10.9 13.1 10 12 10ZM12 16C10.9 16 10 16.9 10 18C10 19.1 10.9 20 12 20C13.1 20 14 19.1 14 18C14 16.9 13.1 16 12 16Z">
+                                          </path>
+                                        </svg></span></button></span></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="resize-triggers">
+                      <div class="expand-trigger">
+                        <div style="width: 589px; height: 281px;"></div>
+                      </div>
+                      <div class="contract-trigger"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-AxhUy fxWvvr back react-draggable" style="transform: translate(384px, 8px);"></div>
+      <div class="sc-AxhUy fxWvvr back react-draggable" style="transform: translate(384px, 8px);"></div>
+    </div>
+  </div>
+  <script>
+    window.env = {
+      product: "ft_lite",
+      version: "1.16.2",
+      locale: "en",
+      configUrl: "https://dz5m0hnfc5lit.cloudfront.net/prod/ft_lite-html5-1.16.2",
+      environment: "production",
+    }
+  </script>
+  <div id="wt-menu-module"></div>
+  <script type="text/javascript" src="static/js/main.1a761c46.js"></script>
+
+  <iframe src="https://txauth.finam.ru/v2.8.0/iframe.html" width="0" height="0" hidden=""></iframe>
+</body>
+
+</html>
