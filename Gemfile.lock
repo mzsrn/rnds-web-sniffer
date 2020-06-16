@@ -86,6 +86,8 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    enumerize (2.3.1)
+      activesupport (>= 3.2)
     erubi (1.9.0)
     ffi (1.12.2)
     font_awesome5_rails (1.1.1)
@@ -241,6 +243,7 @@ DEPENDENCIES
   cancancan
   capybara (>= 2.15)
   devise
+  enumerize
   font_awesome5_rails
   jbuilder (~> 2.7)
   listen (~> 3.2)
