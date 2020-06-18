@@ -16,16 +16,23 @@ import App from '../app.vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
+import Toaster from '../components/utilities/Toaster.vue'
+
 import BrokerCard from '../components/BrokerCard.vue'
 import CreatePortfolio from '../components/CreatePortfolio.vue'
+import FinamPortfolio from '../components/portfolios/FinamPortfolio.vue'
+import TinkoffPortfolio from '../components/portfolios/TinkoffPortfolio.vue'
 import { sidebarCollapser } from './sidebar.js'
 
 Vue.use(TurbolinksAdapter)
 Vue.use(VModal)
 Vue.use(VueAxios, axios)
 Vue.component('app', App)
+Vue.component('toaster', Toaster)
 Vue.component('broker-card', BrokerCard)
 Vue.component('create-portfolio', CreatePortfolio)
+Vue.component('finam-portfolio', FinamPortfolio)
+Vue.component('tinkoff-portfolio', TinkoffPortfolio)
 
 document.addEventListener('turbolinks:load', () => {
   axios.defaults.headers.common['X-CSRF-Token'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content')

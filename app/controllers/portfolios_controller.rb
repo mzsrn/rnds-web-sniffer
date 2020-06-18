@@ -2,6 +2,9 @@ class PortfoliosController < ApplicationController
   before_action :set_portfolio, only: [:show, :edit, :update, :destroy]
   authorize_resource
 
+  def show
+  end
+
   def create
     ActionCable.server.broadcast("bobik:#{current_user.id}", content: 'Start connecting from controller')
     CallBobikJob.perform_later(current_user.id, params['resource_setting_id'], params["login"], params["password"])
@@ -11,7 +14,7 @@ class PortfoliosController < ApplicationController
   private
 
   def set_portfolio
-    @resource = ResourceSetting.find_by(id: params[:id])
+    @resource = ResourceSetting.find(params[:id])
     @portfolio = @resource&.portfolio
   end
 

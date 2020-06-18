@@ -1,0 +1,35 @@
+.portfolio {
+  .header {
+    width: 50%;
+    margin: auto;
+    text-align: center;
+  }
+  .body {
+    width: 50%;
+    margin: auto;
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    button {
+      margin: 20px;
+    }
+  }
+  table {
+    font-size: 14px;
+    table-layout: fixed;
+    border-collapse: collapse;
+    thead {
+      font-weight: bold;
+    }
+    tr {
+      td {
+        padding: 6px;
+      }
+    }
+    tbody {
+      tr:nth-child(odd) {
+        background: lighten(#3b5998, 30%);
+      }
+    }
+  }
+}

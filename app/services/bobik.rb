@@ -10,7 +10,7 @@ class Bobik
 
   def fetch_from source
     doc = get_actual_doc
-    # doc = get_local_doc
+    doc = get_local_doc
     parser = HtmlParser::Finam.new(doc)
     body = parser.get_table_body
     head = I18n.t('table')[:head]
@@ -46,7 +46,7 @@ class Bobik
   end
 
   def get_local_doc
-    file = File.open('/home/marat/projects/rnds-web-sniffer/tmp/finam.html', 'r')
+    # file = File.open('/home/marat/projects/rnds-web-sniffer/tmp/finam.html', 'r')
     Nokogiri::HTML(file)
   end
 

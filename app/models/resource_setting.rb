@@ -7,6 +7,6 @@ class ResourceSetting < ApplicationRecord
   has_one :portfolio
   belongs_to :user
 
-  enumerize :type, in: [:finam, :tinkoff]
+  enumerize :type, in: I18n.t('enumerize.resource_setting.type').keys
 
 end

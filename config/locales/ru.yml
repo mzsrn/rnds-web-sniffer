@@ -1,0 +1,6 @@
+ru:
+  enumerize:
+    resource_setting:
+      type:
+        finam: Финам
+        tinkoff: Тинькофф-инвестиции

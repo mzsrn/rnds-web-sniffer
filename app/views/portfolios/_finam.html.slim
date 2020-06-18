@@ -1,0 +1,13 @@
+- unless @portfolio&.data.empty?
+  table
+    thead
+      tr
+        - for value in I18n.t("table.head").values
+          td #{value}
+    tbody
+      - @portfolio.data["body"].each do |row|
+        tr
+          - for value in row.values
+            td #{value || "n/a"} 
+
+finam-portfolio data="#{@portfolio&.data.to_json}"

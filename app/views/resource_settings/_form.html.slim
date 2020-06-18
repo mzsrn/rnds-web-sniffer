@@ -11,5 +11,5 @@
     = f.text_field :login
   .field
     = f.label :type
-    = f.select :type, ["finam", "tinkoff"]
+    = f.collection_select :type, I18n.t('enumerize.resource_setting.type'), :first, :last
   .actions = f.submit

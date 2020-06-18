@@ -1,0 +1,22 @@
+button {
+  font-family: 'RobotoMono-Regular';
+  font-size: 15px;
+  font-weight: 4000;
+  &:hover {
+    cursor: pointer;
+  }
+  &.btn {
+    &:focus {
+      outline: 0;
+    }
+    border: none;
+    padding: 10px;
+    margin: 6px 0;
+    &.btn-primary {
+      background-color: #3b5998;
+      &:active {
+        background-color: darken(#3b5998, 25%);
+      }
+    }
+  }
+}

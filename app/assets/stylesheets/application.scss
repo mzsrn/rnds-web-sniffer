@@ -35,6 +35,12 @@ a {
   }
 }
 
+h1 {
+  &.cramble {
+    margin-bottom: 40px;
+  }
+}
+
 .navbar{
   background-color: #3b5998;
   overflow: hidden;
@@ -112,4 +118,9 @@ a {
   padding: 2px;
   background-color: red;
   color: #fff !important;
+}
+
+.notice {
+  width: 400px;
+  background-color: lighten(red, 30);
 }

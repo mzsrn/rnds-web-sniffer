@@ -1,6 +1,10 @@
-h1 Портфель
-- if @portfolio.present?
-  create-portfolio body="#{@resource.portfolio.data['body'].to_json}" login="#{@resource.login}" broker-name="#{@resource.type}" broker-id="#{@resource.id}"
-- else
-  h3 Нет данных
-  create-portfolio login="#{@resource.login}" broker-name="#{@resource.type}" broker-id="#{@resource.id}"
+h1.cramble Портфель #{I18n.t("enumerize.resource_setting.type.#{@resource.type}")}
+= render "#{@resource.type}"
+
+= content_tag "#{@resource.type}-portfolio".to_sym
+  - if @portfolio.present?
+    .portfolio
+      button class="btn btn-primary" Обновить
+  - else
+    button class="btn btn-primary" Создать
+
