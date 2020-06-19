@@ -1,1 +1,1 @@
-json.partial! "#{@resource.type}", portfolio: @portfolio&.data
+json.partial! "#{@portfolio.broker}", portfolio: @portfolio.data

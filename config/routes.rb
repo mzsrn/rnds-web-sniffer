@@ -3,15 +3,11 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     sessions: 'users/sessions'
   }
-  resources :resource_settings do
-    member do
-      resource :portfolios
-    end
-  end
+  resources :portfolios
 
   devise_scope :user do
     authenticated :user do
-      root 'resource_settings#index', as: :authenticated_root
+      root 'portfolios#index', as: :authenticated_root
     end
   
     unauthenticated do

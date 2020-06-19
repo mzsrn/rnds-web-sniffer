@@ -1,18 +1,29 @@
-.portfolio {
-  .header {
-    width: 50%;
-    margin: auto;
-    text-align: center;
-  }
-  .body {
-    width: 50%;
-    margin: auto;
+.portfolio-item {
+  background-color: lighten($color: #3b5998, $amount: 40);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px;
+  border-radius: 3px;
+  .links {
     display: flex;
-    padding: 20px;
     flex-direction: column;
-    button {
-      margin: 20px;
+    width: 160px;
+    a {
+      border-radius: 2px;
+      padding: 8px;
+      margin: 2px;
+      background-color: lighten($color: #3b5998, $amount: 20);
     }
+  }
+}
+
+.portfolio {
+  .portfolio-card {
+    background: lighten(#3b5998, 50%);
+    width: fit-content;
+    padding: 30px;
+    border-radius: 3px;
   }
   table {
     font-size: 14px;
@@ -31,5 +42,9 @@
         background: lighten(#3b5998, 30%);
       }
     }
+  }
+  button.bottom {
+    border-radius: 2px;
+    margin-top: 40px;
   }
 }

@@ -1,16 +1,27 @@
-tinkoff-portfolio inline-template=""
-  .tinkoff
-    div v-if="portfolio"
-      | {{portfolio}}
-    div v-else=""
-      | Нет данных
-    button class="btn btn-primary" v-show="hasPortfolio"  @click="refresh" Обновить
-    button class="btn btn-primary" v-show="!hasPortfolio" @click="create" Создать
+tinkoff-portfolio inline-template="" portfolio-id="#{@portfolio.id}"
+  .wrap
+    .portfolio-card
+      div v-if="portfolio"
+        table
+          thead
+            tr
+              td Название
+              td Количество
+              td Доход
+          tbody
+            tr v-for="row in portfolio.positions"
+              td {{ row.name }}
+              td {{ row.balance }}
+              td {{ row.expectedYield.value }}
+      div v-else=""
+        | Нет данных
+
+      button class="btn btn-primary bottom" v-show="hasPortfolio"  @click="create" Обновить
 
     modal name="modal"
       h3.header Загрузить портфель
       .body
-        label for="token"
+        label for="token" Токен
         input type="text" name="token" v-model="token"
-      button @click="createPortfolio" Загрузить
+      button @click="refreshPortfolio" Обновить
         

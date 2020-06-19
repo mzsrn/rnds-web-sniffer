@@ -6,14 +6,11 @@ class Bobik::Tinkoff < Bobik::Base
   def initialize collar
     @token = collar.token
     super(collar)
-    byebug
   end
 
-  class << self
-    def fetch_portfolio!
-      portfolio_json = File.read(Rails.application.root + '/tmp/tinkoff/portfolio.json')
-      JSON.parse portfolio_json
-    end
+  def fetch_portfolio!
+    portfolio_json = File.read(Rails.root.join 'tmp/tinkoff/portfolio.json')
+    JSON.parse portfolio_json
   end
 
 end

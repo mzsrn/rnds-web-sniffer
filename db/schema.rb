@@ -18,19 +18,11 @@ ActiveRecord::Schema.define(version: 2020_05_29_145858) do
 
   create_table "portfolios", force: :cascade do |t|
     t.json "data"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "resource_setting_id"
-    t.index ["resource_setting_id"], name: "index_portfolios_on_resource_setting_id"
-  end
-
-  create_table "resource_settings", force: :cascade do |t|
-    t.string "login"
-    t.string "type"
+    t.string "broker"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
-    t.index ["user_id"], name: "index_resource_settings_on_user_id"
+    t.index ["user_id"], name: "index_portfolios_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

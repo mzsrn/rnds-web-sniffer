@@ -1,0 +1,20 @@
+a href="/portfolios" Назад
+h1 Создание портфеля
+portfolio-new inline-template=""
+  div
+    label for="broker" Брокер
+    select#broker name="broker-list" v-model="params.broker"
+      = options_for_select([["Финам", :finam], ["Tinkoff", :tinkoff]])
+    
+    div v-if="params.broker=='finam'"
+      .finam-credentials
+        label for="login" Login
+        input name="login" type="text" v-model="params.credentials.login"
+        label for="password" Password
+        input name="password" type="text" v-model="params.credentials.password"
+    div v-if="params.broker=='tinkoff'"
+      .tinkoff-credentials
+        label for="token" Token
+        input name="token" type="text" v-model="params.credentials.token"
+        
+    button @click="createPortfolio" Создать портфель

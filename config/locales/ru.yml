@@ -1,6 +1,6 @@
 ru:
   enumerize:
-    resource_setting:
-      type:
+    portfolio:
+      broker:
         finam: Финам
         tinkoff: Тинькофф-инвестиции

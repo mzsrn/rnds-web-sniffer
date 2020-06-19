@@ -1,13 +1,10 @@
 class Collar
 
-  attr_reader :user, :resource
-  attr_reader :errors
-  attr_reader :type
+  attr_reader :user, :errors, :broker
 
-  def initialize user_id, resource_setting_id
+  def initialize user
     @errors = []
-    @user = User.find(user_id)
-    @resource = ResourceSetting.find(resource_setting_id)
+    @user = user
   rescue Exception => e
     add_error e
   end
@@ -26,13 +23,13 @@ class Collar
   
     attr_reader :login, :password
   
-    def initialize user_id, resource_setting_id, options
-      raise ArgumentError "Не указан логин" unless @login = options[:login]
-      raise ArgumentError "Не указан пароль" unless @password = options[:password]
-      super(user_id, resource_setting_id)
+    def initialize user, credentials
+      raise ArgumentError.new("Не указан логин") unless @login = credentials[:login]
+      raise ArgumentError.new("Не указан пароль") unless @password = credentials[:password]
+      super(user)
     end
 
-    def type
+    def broker
       :finam
     end
   end
@@ -40,12 +37,12 @@ class Collar
   class Tinkoff < Collar
     attr_reader :token
 
-    def initialize user_id, resource_setting_id, options
-      raise ArgumentError "Не указан токен" unless @token = options[:token]
-      super(user_id, resource_setting_id)
+    def initialize user, credentials
+      raise ArgumentError.new("Не указан токен") unless @token = credentials[:token]
+      super(user)
     end
 
-    def type
+    def broker
       :tinkoff
     end
 

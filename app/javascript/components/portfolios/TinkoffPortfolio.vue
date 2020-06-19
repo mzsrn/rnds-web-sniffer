@@ -10,9 +10,12 @@ export default {
       token: ""
     }
   },
+  props: {
+    portfolioId: String
+  },
   created: async function() {
     try {
-      const { data } = await this.axios.get(`/resource_settings/5/portfolios.json`)
+      const { data } = await this.axios.get(`/portfolios/${this.portfolioId}.json`)
       this.portfolio = data.portfolio?.payload
       this.hasPortfolio = true
     } catch(err) {
@@ -26,12 +29,13 @@ export default {
     create () {
       this.$modal.show("modal")
     },
-    async createPortfolio () {
-      try {
-        const { data } = await this.axios.post(`/resource_settings/5/portfolios`, {token: this.token, resource_setting_id: 4, target: "tinkoff"})
-      } catch(err) {
-        console.log(err)
-      }
+    refreshPortfolio () {
+        this.axios.patch(`/portfolios/${this.portfolioId}.json`, { params: { broker: "tinkoff", credentials: {token: this.token} } })
+          .then( function(res) {
+            window.Turbolinks.visit(`/portfolios/${res.data.id}`)
+          }).catch((err) =>
+            console.error(err)
+          )
     }
   }
 }

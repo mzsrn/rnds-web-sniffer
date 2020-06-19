@@ -1,3 +1,4 @@
-h1.cramble Портфель #{I18n.t("enumerize.resource_setting.type.#{@resource.type}")}
-= render "#{@resource.type}"
-  h1 'kek'
+a href="/portfolios" Назад
+h1.cramble Портфель #{I18n.t("enumerize.portfolio.broker.#{@portfolio.broker}")}
+.portfolio
+  = render "#{@portfolio.broker}"

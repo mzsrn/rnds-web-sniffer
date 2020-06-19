@@ -4,8 +4,7 @@ class Ability
     alias_action :create, :read, :update, :destroy, to: :crud
    
     if user.present?
-      can :crud, ResourceSetting, user_id: user.id
-      can :crud, Portfolio, resource_setting: { user_id: user.id }
+      can :crud, Portfolio, user_id: user.id
     end
 
   end

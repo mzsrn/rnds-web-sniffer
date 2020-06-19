@@ -20,6 +20,7 @@ import Toaster from '../components/utilities/Toaster.vue'
 
 import BrokerCard from '../components/BrokerCard.vue'
 import CreatePortfolio from '../components/CreatePortfolio.vue'
+import PortfolioNew from '../components/PortfolioNew.vue'
 import FinamPortfolio from '../components/portfolios/FinamPortfolio.vue'
 import TinkoffPortfolio from '../components/portfolios/TinkoffPortfolio.vue'
 import { sidebarCollapser } from './sidebar.js'
@@ -31,6 +32,7 @@ Vue.component('app', App)
 Vue.component('toaster', Toaster)
 Vue.component('broker-card', BrokerCard)
 Vue.component('create-portfolio', CreatePortfolio)
+Vue.component('portfolio-new', PortfolioNew)
 Vue.component('finam-portfolio', FinamPortfolio)
 Vue.component('tinkoff-portfolio', TinkoffPortfolio)
 

@@ -1,0 +1,15 @@
+h1 Портфели
+- if @portfolios.present?
+  - @portfolios.each do |portfolio|
+    .portfolio-item
+      .info
+        h1 = I18n.t("enumerize.portfolio.broker.#{portfolio.broker}")
+        p Дата последнего обновления #{portfolio.updated_at.strftime('%H:%M %d.%m.%Y')}
+      .links
+        = link_to '<i class="fas fa-eye"></i> Посмотреть'.html_safe, portfolio
+        = link_to '<i class="fas fa-trash"></i> Удалить'.html_safe, portfolio, method: :delete
+
+- else
+  h3 У Вас пока нет загруженных портфелей.
+        
+h1 = link_to '+', new_portfolio_path

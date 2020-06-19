@@ -16,4 +16,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  rescue_from ArgumentError do
+    render json: {}, :status => 400
+  end
+
 end

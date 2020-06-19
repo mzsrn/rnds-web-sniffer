@@ -1,34 +1,57 @@
 class PortfoliosController < ApplicationController
   before_action :set_portfolio, only: [:show, :edit, :update, :destroy]
-  before_action :set_resource, only: :create
   authorize_resource
+
+  def new
+    @portfolio = Portfolio.new
+  end
+
+  def index
+    @portfolios = current_user.portfolios
+  end
 
   def show
   end
 
   def create
     ActionCable.server.broadcast("bobik:#{current_user.id}", content: 'Start connecting from controller')
-    CallBobikJob.perform_now(current_user.id, @resource, permitted_params )
+    set_info
+    if @broker == "finam"
+      collar = Collar::Finam.new(current_user, @credentials)
+      CallBobikJob.perform_later(collar)
+    else
+      collar = Collar::Tinkoff.new(current_user, @credentials)
+      portfolio_data = Bobik::Tinkoff.new(collar).fetch_portfolio!
+      if portfolio = Portfolio.create(data: portfolio_data, user: current_user, broker: @broker)
+        render json: portfolio, status: 201
+      end
+    end
+  end
+
+  def update
+    set_info
+    if @broker == "finam"
+      collar = Collar::Finam.new(current_user, @credentials)
+      CallBobikJob.perform_later(collar)
+    else
+      collar = Collar::Tinkoff.new(current_user, @credentials)
+      portfolio_data = Bobik::Tinkoff.new(collar).fetch_portfolio!
+      if @portfolio.update(data: portfolio_data)
+        render json: @portfolio, status: 201
+      end
+    end
   end
 
   private
 
-  def permitted_params
-    case @resource.type
-    when 'finam'
-      params.permit(:login, :password)
-    when 'tinkoff'
-      params.permit(:token)
-    end
+  def set_info
+    data = params.permit!.to_h["params"]
+    @broker = data.delete("broker")
+    @credentials = data.delete("credentials")
   end
 
   def set_portfolio
-    @resource = ResourceSetting.find(params[:id])
-    @portfolio = @resource&.portfolio
-  end
-
-  def set_resource
-    @resource = ResourceSetting.find(params[:resource_setting_id])
+    @portfolio = Portfolio.find(params[:id])
   end
 
 end
