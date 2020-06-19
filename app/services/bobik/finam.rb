@@ -1,14 +1,12 @@
-class Bobik
+class Bobik::Finam < Bobik::Base
 
-  def initialize user_id, resource_setting_id, login, password
-    @user_id, @login, @password = user_id, login, password
-    @portfolio = Portfolio.find_or_initialize_by(resource_setting_id: resource_setting_id)
-    fetch_from 'finam'
+  def initialize collar
+    super(collar)
+    @login = collar.login
+    @password = collar.password
   end
 
-  private
-
-  def fetch_from source
+  def fetch!
     doc = get_actual_doc
     doc = get_local_doc
     parser = HtmlParser::Finam.new(doc)
@@ -17,6 +15,8 @@ class Bobik
     @portfolio.update(data: {body: body})
     ActionCable.server.broadcast("bobik:#{@user_id}", result: {head: head, body: body})
   end
+
+  private
 
   def get_actual_doc
     options_args = %w(

@@ -1,5 +1,16 @@
 tinkoff-portfolio inline-template=""
-  div v-if="portfolio"
-    | {{portfolio}}
-  div v-else=""
-    | Нет данных
+  .tinkoff
+    div v-if="portfolio"
+      | {{portfolio}}
+    div v-else=""
+      | Нет данных
+    button class="btn btn-primary" v-show="hasPortfolio"  @click="refresh" Обновить
+    button class="btn btn-primary" v-show="!hasPortfolio" @click="create" Создать
+
+    modal name="modal"
+      h3.header Загрузить портфель
+      .body
+        label for="token"
+        input type="text" name="token" v-model="token"
+      button @click="createPortfolio" Загрузить
+        

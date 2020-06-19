@@ -38,6 +38,7 @@ gem 'cancancan'
 gem 'selenium-webdriver'
 gem 'sidekiq'
 gem 'nokogiri'
+gem 'httparty'
 
 # Services
 gem 'active_interaction', '~> 3.8'
