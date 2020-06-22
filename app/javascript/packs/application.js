@@ -8,6 +8,7 @@ require("jquery")
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
+import 'three-dots/dist/three-dots.css'
 
 import TurbolinksAdapter from 'vue-turbolinks'
 import Vue from 'vue/dist/vue.esm'
@@ -15,6 +16,7 @@ import VModal from 'vue-js-modal'
 import App from '../app.vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import store from '../store'
 
 import Toaster from '../components/utilities/Toaster.vue'
 
@@ -23,7 +25,6 @@ import CreatePortfolio from '../components/CreatePortfolio.vue'
 import PortfolioNew from '../components/PortfolioNew.vue'
 import FinamPortfolio from '../components/portfolios/FinamPortfolio.vue'
 import TinkoffPortfolio from '../components/portfolios/TinkoffPortfolio.vue'
-import { sidebarCollapser } from './sidebar.js'
 
 Vue.use(TurbolinksAdapter)
 Vue.use(VModal)
@@ -38,8 +39,25 @@ Vue.component('tinkoff-portfolio', TinkoffPortfolio)
 
 document.addEventListener('turbolinks:load', () => {
   axios.defaults.headers.common['X-CSRF-Token'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-  sidebarCollapser()
+  axios.interceptors.request.use(function (config) {
+    store.commit('setLoading')
+    return config;
+  }, function(err) {
+    store.commit('setLoading')
+    return Promise.reject(error);
+  })
+
+  axios.interceptors.response.use(function (response) {
+    store.commit('setLoading')
+    return response;
+  }, function(err) {
+    store.commit('setLoading')
+    return Promise.reject(error);
+  })
+
+
   const app = new Vue({
     el: "[data-behavior='vue']",
+    store: store
   })
 })

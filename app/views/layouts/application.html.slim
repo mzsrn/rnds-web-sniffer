@@ -9,6 +9,8 @@ html
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   body
     .application data-behavior="vue"
+      .loading v-if="$store.state.network.isLoading"
+        .dot-elastic
       nav.navbar
         a#open-sidebar href="#"
           i.fas.fa-bars

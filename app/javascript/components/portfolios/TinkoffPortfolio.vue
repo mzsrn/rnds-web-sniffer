@@ -30,12 +30,12 @@ export default {
       this.$modal.show("modal")
     },
     refreshPortfolio () {
-        this.axios.patch(`/portfolios/${this.portfolioId}.json`, { params: { broker: "tinkoff", credentials: {token: this.token} } })
-          .then( function(res) {
-            window.Turbolinks.visit(`/portfolios/${res.data.id}`)
-          }).catch((err) =>
-            console.error(err)
-          )
+      this.axios.patch(`/portfolios/${this.portfolioId}.json`, {params: {broker: "tinkoff", credentials: {token: this.token}}})
+        .then( function(res) {
+          window.Turbolinks.visit(`/portfolios/${res.data.id}`)
+        }).catch((err) =>
+          console.error(err)
+        )
     }
   }
 }
