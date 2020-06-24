@@ -11,7 +11,10 @@ module RndsWebSniffer
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
-    config.autoload_paths << "#{Rails.root}/app/services"
+    config.eager_load_paths << Rails.root.join('app/services')
+    config.autoload_paths   << Rails.root.join('app/services')
+    config.eager_load_paths << Rails.root.join('lib')
+    config.autoload_paths   << Rails.root.join('lib')
 
     # Delayed Jobs
     config.active_job.queue_adapter = :sidekiq
