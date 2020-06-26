@@ -5,6 +5,7 @@ h1 Портфели
       .info
         h1 = I18n.t("enumerize.portfolio.broker.#{portfolio.broker}")
         p Дата последнего обновления #{portfolio.updated_at.strftime('%H:%M %d.%m.%Y')}
+        p Брокерский счёт #{portfolio.account}
       .links
         = link_to '<i class="fas fa-eye"></i> Посмотреть'.html_safe, portfolio
         = link_to '<i class="fas fa-trash"></i> Удалить'.html_safe, portfolio, method: :delete

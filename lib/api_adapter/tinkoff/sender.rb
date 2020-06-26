@@ -13,7 +13,6 @@ class ApiAdapter::Tinkoff::Sender
   end
 
   def get_accounts
-    byebug
     response = request(:get, '/user/accounts')
     if response.code < 400
       response.parsed_response

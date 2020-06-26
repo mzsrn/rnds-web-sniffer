@@ -21,6 +21,7 @@
 .portfolio {
   .portfolio-card {
     background: lighten(#3b5998, 50%);
+    min-width: 960px;
     width: fit-content;
     padding: 30px;
     border-radius: 3px;
@@ -46,5 +47,31 @@
   button.bottom {
     border-radius: 2px;
     margin-top: 40px;
+  }
+}
+
+.portfolio-new {
+  background: lighten(#3b5998, 50%);
+  padding: 12px;
+  font-size: large;
+  .field {
+    padding-bottom: 16px;
+    label {
+      display: inline-block;
+      width: 100px;
+      text-align: right;
+      padding-right: 12px;
+    }
+  }
+  input[type=text] {
+    background-color: lighten(#3b5998, 50%);
+    border: solid 2px darkgray;
+    min-width: 200px;
+
+  }
+  select {
+    background-color: lighten(#3b5998, 50%);
+    border: solid 2px darkgray;
+    width: 200px;
   }
 }

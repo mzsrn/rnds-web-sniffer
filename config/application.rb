@@ -18,6 +18,7 @@ module RndsWebSniffer
 
     # Delayed Jobs
     config.active_job.queue_adapter = :sidekiq
+    config.time_zone = 'Europe/Moscow'
     config.i18n.default_locale = :ru
     config.i18n.fallbacks = [:ru]
 

@@ -7,14 +7,10 @@ class Bobik::Tinkoff < Bobik::Base
 
   def get_accounts
     @sender.get_accounts
-  rescue StandardError => e
-    byebug
   end
 
-  def get_portfolio
-    @sender.get_portfolio
-  rescue StandardError => e
-    byebug
+  def get_portfolio account=nil
+    res = @sender.get_portfolio account
   end
 
 end

@@ -16,7 +16,7 @@ export default {
   created: async function() {
     try {
       const { data } = await this.axios.get(`/portfolios/${this.portfolioId}.json`)
-      this.portfolio = data.portfolio?.payload
+      this.portfolio = data.portfolio
       this.hasPortfolio = true
     } catch(err) {
       this.portfolio = null

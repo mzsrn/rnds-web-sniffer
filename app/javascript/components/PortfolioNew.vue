@@ -7,7 +7,9 @@ export default {
     return {
       params: {
         broker: "tinkoff",
-        credentials: {}
+        credentials: {
+          token: ""
+        }
       }
     }
   },
@@ -15,7 +17,7 @@ export default {
     createPortfolio: function() {
       this.axios.post(`/portfolios`, {params: this.params}).then(
         function(res) {
-          console.log(res)
+          window.Turbolinks.visit(`/portfolios/${res.data.id}`)
         }
       )
     },

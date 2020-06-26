@@ -20,4 +20,15 @@ class ApplicationController < ActionController::Base
     render json: {}, :status => 400
   end
 
+  protected
+
+  def render_error msg, status=400
+    error = if msg.respond_to? :to_hash
+      mgs
+    else
+      { error: msg }
+    end
+    render json: error, status: status
+  end
+
 end

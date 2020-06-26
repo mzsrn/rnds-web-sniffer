@@ -21,10 +21,17 @@ class PortfoliosController < ApplicationController
       CallBobikJob.perform_later(collar)
     else
       collar = Collar::Tinkoff.new(current_user, @credentials)
-      portfolio_data = Bobik::Tinkoff.new(collar).fetch_portfolio!
-      if portfolio = Portfolio.create(data: portfolio_data, user: current_user, broker: @broker)
-        render json: portfolio, status: 201
+      bobik = Bobik::Tinkoff.new(collar)
+      account = bobik.get_accounts[0]
+      portfolio_data = bobik.get_portfolio(account)
+      portfolio = Portfolio.find_or_initialize_by(user_id: current_user.id, account: account)
+      if portfolio.persisted?
+        portfolio.update(data: portfolio_data, account: account)
+      else
+        portfolio.data = portfolio_data
+        portfolio.save
       end
+      render json: portfolio, status: 201
     end
   end
 
@@ -35,8 +42,11 @@ class PortfoliosController < ApplicationController
       CallBobikJob.perform_later(collar)
     else
       collar = Collar::Tinkoff.new(current_user, @credentials)
-      portfolio_data = Bobik::Tinkoff.new(collar).fetch_portfolio!
-      if @portfolio.update(data: portfolio_data)
+      bobik = Bobik::Tinkoff.new(collar)
+      account = bobik.get_accounts[0]
+      portfolio = Portfolio.find_or_initialize_by(user_id: current_user.id, account: account)
+      portfolio_data = bobik.get_portfolio(account)
+      if @portfolio.update(data: portfolio_data, account: account)
         render json: @portfolio, status: 201
       end
     end
