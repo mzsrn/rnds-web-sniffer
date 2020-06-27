@@ -17,8 +17,7 @@ class PortfoliosController < ApplicationController
     ActionCable.server.broadcast("bobik:#{current_user.id}", content: 'Start connecting from controller')
     set_info
     if @broker == "finam"
-      collar = Collar::Finam.new(current_user, @credentials)
-      CallBobikJob.perform_later(collar)
+      CallBobikJob.perform_now(current_user.id, @credentials)
     else
       collar = Collar::Tinkoff.new(current_user, @credentials)
       bobik = Bobik::Tinkoff.new(collar)
@@ -38,8 +37,7 @@ class PortfoliosController < ApplicationController
   def update
     set_info
     if @broker == "finam"
-      collar = Collar::Finam.new(current_user, @credentials)
-      CallBobikJob.perform_later(collar)
+      CallBobikJob.perform_now(current_user.id, @credentials)
     else
       collar = Collar::Tinkoff.new(current_user, @credentials)
       bobik = Bobik::Tinkoff.new(collar)
@@ -51,6 +49,11 @@ class PortfoliosController < ApplicationController
       end
     end
   end
+
+  def destroy
+    Portfolio.find(params[:id]).destroy
+    redirect_to portfolios_path
+  end 
 
   private
 

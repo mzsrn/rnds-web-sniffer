@@ -19,9 +19,10 @@ tinkoff-portfolio inline-template="" portfolio-id="#{@portfolio.id}"
       button class="btn btn-primary bottom" v-show="hasPortfolio"  @click="create" Обновить
 
     modal name="modal"
-      h3.header Загрузить портфель
-      .body
-        label for="token" Токен
-        input type="text" name="token" v-model="token"
-      button @click="refreshPortfolio" Обновить
+      .portfolio-card
+        h3.header Загрузить портфель
+        .body
+          label for="token" Токен
+          input type="text" name="token" v-model="token"
+        button.btn.btn-primary @click="refreshPortfolio" Обновить
         

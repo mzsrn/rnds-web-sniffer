@@ -1,21 +1,10 @@
 class CallBobikJob < ApplicationJob
   queue_as :default
 
-  def perform *args
-    @user_id = args[0]
-    @resource = args[1]
-    @params = args[2]
-    collar = get_collar
-    return collar.errors unless collar.errors.empty?
-
-    ActionCable.server.broadcast("bobik:#{@user_id}", content: 'Start connecting from job')
-    Bobik::Tinkoff.new(collar)
-  end
-
-  private 
-
-  def get_collar
-    Collar::Tinkoff.new(@user_id, @resource.id, {token: @params["token"]})
+  def perform user_id, credentials
+    collar = Collar::Finam.new(User.find(user_id), credentials)
+    bobik = Bobik::Finam.new(collar)
+    bobik.fetch!
   end
 
 end

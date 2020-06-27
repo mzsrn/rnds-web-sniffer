@@ -44,7 +44,7 @@ document.addEventListener('turbolinks:load', () => {
     return config;
   }, function(err) {
     store.commit('setLoading')
-    return Promise.reject(error);
+    return Promise.reject(err);
   })
 
   axios.interceptors.response.use(function (response) {
@@ -52,7 +52,7 @@ document.addEventListener('turbolinks:load', () => {
     return response;
   }, function(err) {
     store.commit('setLoading')
-    return Promise.reject(error);
+    return Promise.reject(err);
   })
 
 
