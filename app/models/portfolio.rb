@@ -5,6 +5,9 @@ class Portfolio < ApplicationRecord
   ASYNC_TYPES = %w(finam)
 
   belongs_to :user
+  belongs_to :broker
+  belongs_to :account
+
   enumerize :broker, in: %w(finam tinkoff), scope: true
   validates_uniqueness_of :broker, scope: :user_id
 

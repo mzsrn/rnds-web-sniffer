@@ -10,19 +10,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_26_063200) do
+ActiveRecord::Schema.define(version: 2020_07_01_100922) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
 
+  create_table "accounts", force: :cascade do |t|
+    t.string "number"
+    t.bigint "user_id"
+    t.bigint "broker_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["broker_id"], name: "index_accounts_on_broker_id"
+    t.index ["user_id"], name: "index_accounts_on_user_id"
+  end
+
+  create_table "balances", force: :cascade do |t|
+    t.string "currency"
+    t.float "value"
+    t.bigint "account_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_balances_on_account_id"
+  end
+
+  create_table "brokers", force: :cascade do |t|
+    t.string "name"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_brokers_on_user_id"
+  end
+
   create_table "portfolios", force: :cascade do |t|
     t.json "data"
-    t.string "broker"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
-    t.string "account"
+    t.bigint "broker_id"
+    t.bigint "account_id"
+    t.index ["account_id"], name: "index_portfolios_on_account_id"
+    t.index ["broker_id"], name: "index_portfolios_on_broker_id"
     t.index ["user_id"], name: "index_portfolios_on_user_id"
   end
 
