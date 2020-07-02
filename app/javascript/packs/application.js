@@ -25,8 +25,10 @@ import CreatePortfolio from '../components/CreatePortfolio.vue'
 import PortfolioNew from '../components/PortfolioNew.vue'
 import FinamPortfolio from '../components/portfolios/FinamPortfolio.vue'
 import TinkoffPortfolio from '../components/portfolios/TinkoffPortfolio.vue'
+import EventBus, { eventBus } from '../plugin/EventBus'
 
 Vue.use(TurbolinksAdapter)
+Vue.use(EventBus)
 Vue.use(VModal)
 Vue.use(VueAxios, axios)
 Vue.component('app', App)
@@ -51,6 +53,7 @@ document.addEventListener('turbolinks:load', () => {
     store.commit('setLoading')
     return response;
   }, function(err) {
+    eventBus.$emit('toaster:show', {kek: "lol"})
     store.commit('setLoading')
     return Promise.reject(err);
   })

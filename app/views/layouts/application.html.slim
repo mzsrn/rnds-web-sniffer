@@ -21,9 +21,4 @@ html
       .main#main
         .card
           = yield
-        toaster inline-template=""
-          .toaster v-show="isShowed"
-            p.alert
-              = alert
-            p.notice
-              = notice
+      toaster alert=alert

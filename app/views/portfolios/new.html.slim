@@ -19,5 +19,8 @@ portfolio-new inline-template=""
       .field.tinkoff-credentials
         label for="token" Token
         input name="token" type="text" v-model="params.credentials.token"
-        
+    .field
+        label for="account" Account
+        input name="account" type="text" v-model="params.account"
+      
     button.btn.btn-primary @click="createPortfolio" Создать портфель
