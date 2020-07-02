@@ -55,7 +55,7 @@ class ApiAdapter::Tinkoff::Sender
 
   def add_error error
     if error.respond_to?(:code)
-      error_description = error_description_by_code error.code
+      error_description = error_description error
     else
       Rails.logger.error 'SenderError'
       Rails.logger.error error.to_s
@@ -65,12 +65,14 @@ class ApiAdapter::Tinkoff::Sender
     @errors << error_description
   end
 
-  def error_description_by_code code
-    case code
+  def error_description error
+    case error.code
     when 401
       { unauthorized: "Указан неправильный токен" }
     when 404
       { not_found: "Указанный ресурс не найден" }
+    when 500
+      { not_found: error.parsed_response["payload"]["message"] }
     else
       { unknown: "Произошла ошибка, повторите запрос позже" }
     end

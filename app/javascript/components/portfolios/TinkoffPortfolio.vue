@@ -7,7 +7,8 @@ export default {
     return {
       portfolio: {},
       hasPortfolio: false,
-      token: ""
+      token: "",
+      account: ""
     }
   },
   props: {
@@ -23,14 +24,18 @@ export default {
     }
   },
   methods: {
-    refresh () {
-      console.log(123)
-    },
     create () {
       this.$modal.show("modal")
     },
     refreshPortfolio () {
-      this.axios.patch(`/portfolios/${this.portfolioId}.json`, {params: {broker: "tinkoff", credentials: {token: this.token}}})
+      params = {
+        broker: "tinkoff",
+        credentials: {
+          token: this.token,
+        },
+        account: this.account
+      }
+      this.axios.patch(`/portfolios/${this.portfolioId}.json`, params)
         .then( function(res) {
           window.Turbolinks.visit(`/portfolios/${res.data.id}`)
         }).catch((err) =>
