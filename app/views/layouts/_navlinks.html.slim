@@ -2,6 +2,7 @@ ul
   - if user_signed_in?
     li
       =link_to 'Портфели', portfolios_path
+      =link_to 'Акции', stocks_path
     =link_to 'Выйти', destroy_user_session_path, method: :delete
   - else
     =link_to 'Войти', new_user_session_path

@@ -15,12 +15,19 @@ portfolio-new inline-template=""
         .field
           label for="password" Password
           input name="password" type="password" v-model="params.credentials.password"
+        .field
+          label for="account" Счёт
+          input name="account" type="text" v-model="params.account"
     div v-if="params.broker=='tinkoff'"
       .field.tinkoff-credentials
         label for="token" Token
         input name="token" type="text" v-model="params.credentials.token"
-    .field
-        label for="account" Account
-        input name="account" type="text" v-model="params.account"
+      .field
+        label for="account" Счёт
+        - if current_user.tinkoff_accounts.present?
+          select#broker name="broker-list" v-model="params.account"
+            = options_for_select(current_user.tinkoff_accounts.pluck(:number))
+        - else
+          input name="account" type="text" v-model="params.account"
       
     button.btn.btn-primary @click="createPortfolio" Создать портфель

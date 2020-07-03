@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   scope :market do
     resources :stocks, only: [:index], controller: 'market_stocks'
   end
+  resources :user_stocks, only: [:create]
 
   devise_scope :user do
     authenticated :user do

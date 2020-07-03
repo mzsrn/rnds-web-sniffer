@@ -2,13 +2,13 @@ class ApiAdapter::Tinkoff::Sender
   
   include HTTParty
   
-  attr_accessor :params
+  attr_accessor :params, :body
   attr_reader   :errors
   
   base_uri 'https://api-invest.tinkoff.ru/openapi/sandbox'
   
-  def initialize token, params = {}
-    @token, @params = token, params
+  def initialize token, params = {}, body = {}
+    @token, @params, @body = token, params, body
     @errors = []
   end
 
@@ -37,8 +37,14 @@ class ApiAdapter::Tinkoff::Sender
   end
 
   def get_stocks
-    response = request(:get, 'market/portfolio')
+    response = request(:get, '/market/portfolio')
     response.parsed_response
+  end
+
+  def make_market_order
+    request(:post, '/orders/market-order')
+  rescue HTTParty::Error => e
+    add_error e
   end
 
 
@@ -51,6 +57,7 @@ class ApiAdapter::Tinkoff::Sender
   def opts
     {
       query: @params,
+      body: @body.to_json,
       headers: {
         "Authorization" => "Bearer #{@token}",
         "Content-Type" => "application/json"

@@ -2,11 +2,18 @@ h1 Акции
 
 .portfolio
   - @stocks.each do |stock|
-      .stock-card
+    tinkoff-stock-card inline-template="" key="#{stock['figi']}"
+      .wrap
         h3.header =stock["name"]
         .body
-          label for="token" Токен
-          input type="text" name="token" v-model="token"
-          label for="qantity" Количество
-          input type="number" step=stock["minPriceIncrement"] min=stock["minPriceIncrement"] name="qantity" v-model="qantity"
-        button.btn.btn-primary @click="buy" Купить
+          .field
+            label for="token" Токен
+            input type="text" name="token" v-model="token"
+          .field
+            label for="account" Счёт
+            select#account name="broker-list" v-model="account"
+              = options_for_select(current_user.tinkoff_accounts.pluck(:number))
+          .field
+            label for="amount" Количество
+            input type="number" step=stock["minPriceIncrement"] min=stock["minPriceIncrement"] name="amount" v-model="amount"
+        button.btn.btn-primary @click="buy('#{stock["figi"]}')" Купить

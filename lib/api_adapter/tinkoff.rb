@@ -34,4 +34,22 @@ class ApiAdapter::Tinkoff < ApiAdapter::Base
     @sender.get_stocks
   end
 
+  def make_market_order(figi, lots, account=nil)
+    selected_account = account || get_accounts[0]
+    @sender.body = {
+      lots: lots.to_i,
+      operation: "Buy"
+    }
+    @sender.params = {
+      figi: figi,
+      brokerAccountId: selected_account
+    }
+    res = @sender.make_market_order
+    code = res.response.code
+    body = JSON.parse res.response.body
+    raise NotEnoughBalance.new("Недостаточно средств") if body["status"] == "Error"
+    raise RuntimeError if code.to_i >= 400
+    return true
+  end
+
 end

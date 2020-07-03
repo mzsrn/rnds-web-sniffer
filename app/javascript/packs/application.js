@@ -21,10 +21,10 @@ import store from '../store'
 import Toaster from '../components/utilities/Toaster.vue'
 
 import BrokerCard from '../components/BrokerCard.vue'
-import CreatePortfolio from '../components/CreatePortfolio.vue'
 import PortfolioNew from '../components/PortfolioNew.vue'
 import FinamPortfolio from '../components/portfolios/FinamPortfolio.vue'
 import TinkoffPortfolio from '../components/portfolios/TinkoffPortfolio.vue'
+import TinkoffStockCard from '../components/market/TinkoffStockCard.vue'
 import EventBus, { eventBus } from '../plugin/EventBus'
 
 Vue.use(TurbolinksAdapter)
@@ -34,10 +34,10 @@ Vue.use(VueAxios, axios)
 Vue.component('app', App)
 Vue.component('toaster', Toaster)
 Vue.component('broker-card', BrokerCard)
-Vue.component('create-portfolio', CreatePortfolio)
 Vue.component('portfolio-new', PortfolioNew)
 Vue.component('finam-portfolio', FinamPortfolio)
 Vue.component('tinkoff-portfolio', TinkoffPortfolio)
+Vue.component('tinkoff-stock-card', TinkoffStockCard)
 
 document.addEventListener('turbolinks:load', () => {
   axios.defaults.headers.common['X-CSRF-Token'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
