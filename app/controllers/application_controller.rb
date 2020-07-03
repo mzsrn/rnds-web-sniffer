@@ -20,6 +20,10 @@ class ApplicationController < ActionController::Base
     render json: {error: e.message}, :status => 400
   end
 
+  rescue_from ::ExecuteError do |e|
+    render json: { error: e.message}, :status => 400  
+  end
+
   protected
 
   def render_error msg, status=400

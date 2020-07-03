@@ -1,1 +1,1 @@
-json.partial! "#{@portfolio.broker}", portfolio: @portfolio.data
+json.partial! "#{@portfolio.broker.name}", portfolio: @portfolio.data

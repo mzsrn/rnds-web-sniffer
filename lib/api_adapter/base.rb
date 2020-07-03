@@ -1,6 +1,6 @@
 class ApiAdapter::Base
 
-  class ApiError < StandardError; end
+  class ApiError < RuntimeError; end
 
   def get_accounts
     raise NotImplementedError

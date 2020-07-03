@@ -5,7 +5,7 @@ class ApiAdapter::Tinkoff::Sender
   attr_accessor :params
   attr_reader   :errors
   
-  base_uri 'https://api-invest.tinkoff.ru/openapi'
+  base_uri 'https://api-invest.tinkoff.ru/openapi/sandbox'
   
   def initialize token, params = {}
     @token, @params = token, params

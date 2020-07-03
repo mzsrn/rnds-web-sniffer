@@ -1,4 +1,4 @@
 a href="/portfolios" Назад
-h1.cramble Портфель #{I18n.t("enumerize.portfolio.broker.#{@portfolio.broker}")}
+h1.cramble Портфель #{I18n.t("enumerize.portfolio.broker.#{@portfolio.broker.name}")}
 .portfolio
-  = render "#{@portfolio.broker}"
+  = render "#{@portfolio.broker.name}"

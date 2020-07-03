@@ -12,7 +12,7 @@ tinkoff-portfolio inline-template="" portfolio-id="#{@portfolio.id}"
             tr v-for="row in portfolio.positions"
               td {{ row.name }}
               td {{ row.balance }}
-              td {{ row.expectedYield.value }}
+              td {{ row.expectedYield?.value }}
       div v-else=""
         | Нет данных
 

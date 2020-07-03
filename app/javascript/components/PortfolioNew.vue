@@ -11,7 +11,7 @@ export default {
       params: {
         broker: "tinkoff",
         credentials: {
-          token: "t.KqViz0MEZrQkRpFJWI5d-NCMTjkrl56XhbHB5u_jUTUICnlEb8ZrT7bZ5eIFN21bjmip09zf9HyvDJ5EiwyttQ"
+          token: "t.2eKpo8Wh0txdsnFNBnlnAePwYXtFXKwaiAhCmqYyRELa9Iv-dSXPwlM-mw1CzpPJs-4nXLjdXsYA7-R8uHhNdA"
         }
       }
     }
