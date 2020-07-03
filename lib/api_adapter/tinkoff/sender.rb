@@ -36,6 +36,11 @@ class ApiAdapter::Tinkoff::Sender
     add_error e
   end
 
+  def get_stocks
+    response = request(:get, 'market/portfolio')
+    response.parsed_response
+  end
+
 
   private
 

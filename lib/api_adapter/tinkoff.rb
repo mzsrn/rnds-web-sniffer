@@ -30,4 +30,8 @@ class ApiAdapter::Tinkoff < ApiAdapter::Base
     raise ApiError, @sender.errors.flat_map(&:values).join(', ')
   end
 
+  def get_stocks
+    @sender.get_stocks
+  end
+
 end

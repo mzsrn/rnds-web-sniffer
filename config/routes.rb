@@ -4,6 +4,9 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
   resources :portfolios
+  scope :market do
+    resources :stocks, only: [:index], controller: 'market_stocks'
+  end
 
   devise_scope :user do
     authenticated :user do

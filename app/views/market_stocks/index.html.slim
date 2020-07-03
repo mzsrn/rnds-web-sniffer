@@ -1,0 +1,12 @@
+h1 Акции
+
+.portfolio
+  - @stocks.each do |stock|
+      .stock-card
+        h3.header =stock["name"]
+        .body
+          label for="token" Токен
+          input type="text" name="token" v-model="token"
+          label for="qantity" Количество
+          input type="number" step=stock["minPriceIncrement"] min=stock["minPriceIncrement"] name="qantity" v-model="qantity"
+        button.btn.btn-primary @click="buy" Купить
