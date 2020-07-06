@@ -34,11 +34,11 @@ class ApiAdapter::Tinkoff < ApiAdapter::Base
     @sender.get_stocks
   end
 
-  def make_market_order(figi, lots, account=nil)
+  def make_market_order(figi, lots, account=nil, operation=nil)
     selected_account = account || get_accounts[0]
     @sender.body = {
       lots: lots.to_i,
-      operation: "Buy"
+      operation: operation
     }
     @sender.params = {
       figi: figi,

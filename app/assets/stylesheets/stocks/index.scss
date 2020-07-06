@@ -1,0 +1,29 @@
+@import "mixins";
+
+.tinkoff-stock-market{
+  display: flex;
+  order: 2;
+  flex-wrap: wrap;
+}
+
+.tinkoff-stock-card {
+  width: 400px;
+  background-color: lighten($tinkoff-color, 10%);
+  margin: 8px;
+  padding: 8px;
+  border-radius: 3px;
+  .field{
+    label{
+      display: inline-block;
+      width: 120px;
+      text-align: right;
+      padding-right: 12px;
+    }
+  }
+  .body{
+    margin: 10px 0 10px 0
+  }
+  .btn {
+    margin-right: 4px;
+  }
+}

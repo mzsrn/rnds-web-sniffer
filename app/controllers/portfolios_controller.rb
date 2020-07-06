@@ -28,6 +28,16 @@ class PortfoliosController < ApplicationController
   end
 
   def update
+    res = Portfolio::Create.run(user: current_user, params: required_params)
+    if res.errors.any?
+      raise ExecuteError.new(res.errors.full_messages.join(', '))
+    else
+      @portfolio = res.result
+    end
+    respond_to do |format|
+      format.html { redirect_to @portfolio }
+      format.json { render json: @portfolio, status: :ok}
+    end
   end
 
   def destroy
