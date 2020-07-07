@@ -53,7 +53,7 @@ document.addEventListener('turbolinks:load', () => {
     store.commit('setLoading')
     return response;
   }, function(err) {
-    eventBus.$emit('toaster:show', {kek: "lol"})
+    eventBus.$emit('toaster:show', err.response)
     store.commit('setLoading')
     return Promise.reject(err);
   })

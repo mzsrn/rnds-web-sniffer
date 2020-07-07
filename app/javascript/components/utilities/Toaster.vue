@@ -1,6 +1,7 @@
 <template>
-<p>
+<p v-show="isShowed" class="toaster">
   {{alert}}
+  {{backAlert}}
 </p>
 
 </template>
@@ -11,14 +12,21 @@ export default {
     alert: String
   },
   data: function () {
-    return { isShowed: this.$el?.innerHTML == undefined }
+    return { 
+      isShowed: false,
+      backAlert: ""
+    }
   },
   created() {
-    this.$eventBus.$on('toaster:show', (data) => (console.log(data)))
+    this.$eventBus.$on('toaster:show', (data) => {
+      this.show(data)
+    })
   },
   methods: {
-    show() {
-      setTimeout( () => this.isShowed = false, 2000 )
+    show(data) {
+      this.backAlert = data.data.error
+      this.isShowed = true
+      setTimeout( () => this.isShowed = false, 3000 )
     }
   }
   
@@ -30,6 +38,9 @@ export default {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    padding: 100px;
+    padding: 10px;
+    width: 240px;
+    border: 1px solid black;
+    border-left: 3px solid red;
   }
 </style>>

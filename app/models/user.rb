@@ -6,7 +6,7 @@ class User < ApplicationRecord
   has_many :portfolios, through: :accounts, dependent: :destroy
 
   def tinkoff_accounts
-    brokers.where(name: :tinkoff).take.accounts
+    brokers.where(name: :tinkoff).take.try(:accounts) || []
   end
 
 end
